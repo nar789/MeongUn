@@ -134,7 +134,7 @@
       #icon_container{
         display: inline-block;
         background-color: rgba(0,0,0,0.6);
-        padding: 8px;
+        padding: 10px;
         border-radius: 25px;
       }
     </style>
