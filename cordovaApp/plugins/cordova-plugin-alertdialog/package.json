@@ -1,0 +1,23 @@
+{
+  "name": "cordova-plugin-alertdialog",
+  "version": "1.0.1",
+  "description": "Cordova Alert Dialog Plugin",
+  "cordova": {
+    "id": "cordova-plugin-alertdialog",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fbsanches/cordova-plugin-alertdialog"
+  },
+  "keywords": [
+    "cordova",
+    "alertdialog",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Fernando Arce",
+  "license": "Apache-2.0"
+}

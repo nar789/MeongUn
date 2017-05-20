@@ -1,0 +1,39 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-alertdialog": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-simple-toast": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-sqlite-2": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "com.borismus.webintent": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-headercolor": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        }
+    },
+    "dependent_plugins": {}
+}

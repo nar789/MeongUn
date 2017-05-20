@@ -1,0 +1,156 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+*{
+  font-family: 'Jeju Gothic', sans-serif;
+  text-shadow:none;
+  text-decoration:none;
+}
+#header{
+  background-color:#020607;
+  height:70px;
+  width:100%;
+  position:fixed;
+  top:0px;
+  z-index:10;
+  text-align:center;
+}
+#writing_button{
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  background-color: #f34235;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 50px;
+  padding: 20px;
+  z-index: 10;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+}
+#writing_icon_image{
+  width: 30px;
+  height: 30px;
+}
+#modal{
+  display:block;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+  z-index:20;
+
+}
+#modal2{
+  display:block;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+  z-index:20;
+  border-radius:10px;
+}
+#modalContent{
+  margin:auto;
+  background-color:rgba(255,255,255,1);
+  width:70%;
+  height:240px;
+  border-radius:10px;
+}
+#topMargin{
+  height:30%;
+}
+iframe{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border:none;
+}
+.modal_line{
+  height:40px;
+  width:90%;
+  margin-top:20px;
+  margin: 10px;
+  font-size: 14px;
+}
+.modal_line_title{
+  height: 40px;
+  padding-top: 20px;
+  background-color: black;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.fullScreen{
+  z-index:30;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+.content{
+  position:fixed !important;
+  top:70px !important;
+}
+#header_top{
+  color:#fcfcfd;
+  height:40px;
+}
+#header_content{
+  height:30px;
+}
+#a_button{
+  color:#fcfcfd;
+  text-decoration:none;
+  padding:12px;
+  font-size:13px;
+}
+#a_button:hover{
+  background-color:#343737;
+  border:1px solid #f26a41;
+  border-left:none;
+  border-right:none;
+  border-top:none;
+}
+#header_icon_right{
+  margin:5px;
+  position:fixed;
+  top:3px;
+  right:0px;
+}
+#header_icon_left{
+  margin:5px;
+  position:fixed;
+  top:0px;
+  left:0px;
+}
+#icon{
+  width:23.33px;
+  height:23.33px;
+}
+#icon_font{
+  display:inline;
+  border:1px solid white;
+  color:white;
+  font-size:12px;
+  padding:3px;
+  position:relative;
+  bottom:5px;
+}
+#title{
+  display:inline;
+  color:white;
+  font-size:24px;
+  border:none;
+  font-family: 'Nanum Brush Script', serif;
+}
+#meun{
+  color:#fc6014;
+}
+#signUpIframe{
+  position:initial;
+  width:101%;
+}

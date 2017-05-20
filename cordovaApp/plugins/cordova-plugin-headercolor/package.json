@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/tomloprod/cordova-plugin-headercolor",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/tomloprod/cordova-plugin-headercolor",
+        "spec": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:tomloprod/cordova-plugin-headercolor.git",
+          "sshUrl": "git+ssh://git@github.com/tomloprod/cordova-plugin-headercolor.git",
+          "httpsUrl": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git",
+          "gitUrl": "git://github.com/tomloprod/cordova-plugin-headercolor.git",
+          "shortcut": "github:tomloprod/cordova-plugin-headercolor",
+          "directUrl": "https://raw.githubusercontent.com/tomloprod/cordova-plugin-headercolor/master/package.json"
+        }
+      },
+      "E:\\cordova\\MeonUn\\node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git",
+  "_id": "cordova-plugin-headercolor@1.0.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-headercolor",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/tomloprod/cordova-plugin-headercolor",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/tomloprod/cordova-plugin-headercolor",
+    "spec": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:tomloprod/cordova-plugin-headercolor.git",
+      "sshUrl": "git+ssh://git@github.com/tomloprod/cordova-plugin-headercolor.git",
+      "httpsUrl": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git",
+      "gitUrl": "git://github.com/tomloprod/cordova-plugin-headercolor.git",
+      "shortcut": "github:tomloprod/cordova-plugin-headercolor",
+      "directUrl": "https://raw.githubusercontent.com/tomloprod/cordova-plugin-headercolor/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git#0dd0af0b552ba31bb56dd427c96f3434842ff9ec",
+  "_shasum": "9b9caf2508f54c1197d1f18d970977043bd40829",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/tomloprod/cordova-plugin-headercolor",
+  "_where": "E:\\cordova\\MeonUn\\node_modules",
+  "author": {
+    "name": "tomloprod"
+  },
+  "bugs": {
+    "url": "https://github.com/tomloprod/cordova-plugin-headercolor/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-headercolor",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "HeaderColor is a cordova plugin to change color of header in multitask view. Android devices.",
+  "devDependencies": {},
+  "gitHead": "0dd0af0b552ba31bb56dd427c96f3434842ff9ec",
+  "homepage": "https://github.com/tomloprod/cordova-plugin-headercolor#readme",
+  "keywords": [
+    "cordova",
+    "ionic",
+    "header",
+    "color",
+    "android"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-headercolor",
+  "optionalDependencies": {},
+  "readme": "# cordova-plugin-headercolor [![License](https://img.shields.io/github/license/tomloprod/cordova-plugin-headercolor.svg)](http://www.opensource.org/licenses/mit-license.php)\r\n\r\n**HeaderColor** is a cordova plugin to change color of header in multitask view. Android devices.\r\n\r\n<img src=\"https://raw.githubusercontent.com/tomloprod/cordova-plugin-headercolor/master/headercolor.png\" width=\"350\"/>\r\n\r\n## Supported Platforms\r\n\r\n- Android\r\n\r\n## Installation\r\n\r\nCordova:\r\n\r\n    cordova plugin add cordova-plugin-headercolor\r\n\r\n## Usage\r\n\r\nThis plugin exports an object with one method called \"tint\":\r\n\r\n```javascript\r\nwindow.plugins.headerColor.tint(\"#becb29\");\r\n```\r\n\r\nYou can also specify the header color in your `config.xml`:\r\n\r\n```xml\r\n<preference name=\"HeaderColor\" value=\"#becb29\" />\r\n```\r\n",
+  "readmeFilename": "README.MD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomloprod/cordova-plugin-headercolor.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

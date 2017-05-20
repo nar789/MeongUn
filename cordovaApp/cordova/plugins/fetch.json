@@ -1,0 +1,10 @@
+{
+    "com.borismus.webintent": {
+        "source": {
+            "type": "local",
+            "path": "..\\cordova-webintent-master"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
