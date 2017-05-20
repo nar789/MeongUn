@@ -33,7 +33,7 @@
       </div>
     </center>
   </div>
-  <a id=writing_button href="#pageWriting" data-transition="pop"><img id=writing_icon_image src='images/iconmonstr-pencil-14-48.png'></a>
+  <a id=writing_button href="#pageWriting" data-transition="pop" onclick="returnCurrentWindow()"><img id=writing_icon_image src='images/iconmonstr-pencil-14-48.png'></a>
   <div id=header>
     <div id=header_top></div>
     <div id=header_icon_left>

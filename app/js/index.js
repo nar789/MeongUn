@@ -10,6 +10,10 @@ function sendMsg(target){
     window.parent.postMessage(json,"*");
   }
 }
+function returnCurrentWindow(){
+  var json='{"title":"category","category":"'+window.location.href+'"}';
+  document.getElementById('pageWritingIframe').contentWindow.postMessage(json,'*');
+}
 window.onload=function(){
   if(document.getElementById('isadmin').value=='admin'){
     admin=1;
@@ -90,19 +94,19 @@ window.onmessage=function(e){
         if(document.getElementById('isadmin').value=='admin'){location.reload();}
         reloadAllData()
 
-        var json='{"title":"toast","toast":"'+'삭제완료'+'"}';
-        window.parent.postMessage(json,"*");
+        // var json='{"title":"toast","toast":"'+'삭제완료'+'"}';
+        // window.parent.postMessage(json,"*");
       });
     }else if(j.title=="updateContent"){
       $.post("mysql/updateContent.php",{no:j.no,content:j.content}).done(function(data){
         if(document.getElementById('isadmin').value=='admin'){location.reload();}
         reloadAllData();
-        var json='{"title":"toast","toast":"'+'수정완료'+'"}';
-        window.parent.postMessage(json,"*");
+        // var json='{"title":"toast","toast":"'+'수정완료'+'"}';
+        // window.parent.postMessage(json,"*");
       });
     }else if(j.title=="toast"){
-      var json='{"title":"toast","toast":"'+j.toast+'"}';
-      window.parent.postMessage(json,"*");
+      // var json='{"title":"toast","toast":"'+j.toast+'"}';
+      // window.parent.postMessage(json,"*");
     }else if(j.title=="ad"){
       var json='{"title":"ad","ad":"'+j.ad+'"}';
       window.parent.postMessage(json,"*");

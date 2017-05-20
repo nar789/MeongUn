@@ -46,6 +46,15 @@
             document.body.style="background:url("+j.image_src+") no-repeat center center fixed;background-size: cover;";
             img=j.image_src;
             $("#modal").fadeOut();
+          }else if(j.title="category"){
+
+            if(j.category.indexOf('#page1')!=-1){
+              target_board=1;
+            }else if(j.category.indexOf('#page2')!=-1){
+              target_board=2;
+            }else if(j.category.indexOf('#page3')!=-1){
+              target_board=3;
+            }
           }
         }
       }
@@ -122,6 +131,12 @@
         border-left:none;
         border-right:none;
       }
+      #icon_container{
+        display: inline-block;
+        background-color: rgba(0,0,0,0.6);
+        padding: 8px;
+        border-radius: 25px;
+      }
     </style>
   </head>
 
@@ -130,8 +145,9 @@
     <div id=icon_box>
       <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
-      <img class=icon onclick="openPicture('PICTURE')" id=camera src="images/iconmonstr-picture-6-48.png">
-      <img class=icon onclick="openCategory()" id=camera src="images/iconmonstr-synchronization-20-48.png">
+      <div id=icon_container>
+        <img class=icon onclick="openPicture('PICTURE')" id=camera src="images/iconmonstr-picture-6-48.png">
+      </div>
       <div id=space></div>
       <div class=icon onclick="saveData()" id=icon_save>글 저장하기</div>
     </div>
@@ -140,7 +156,7 @@
         <textarea id=content_text placeholder="나의 명언을 남겨주세요!!"></textarea>
       </div>
     </center>
-    <div id=modal2 style="display:none">
+    <div id=modal2 style="display:none" onclick="document.getElementById('modal2').style.display='none';">
       <div id=topMargin2></div>
       <center>
         <div id=modalContent2>
