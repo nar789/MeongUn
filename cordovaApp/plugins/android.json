@@ -33,6 +33,16 @@
         },
         "cordova-plugin-headercolor": {
             "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-htj-kakaotalk": {
+            "KAKAO_APP_KEY": "85a68fd77cd2a32c013696bda6f59677",
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-sim": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-fcm": {
+            "PACKAGE_NAME": "com.hume.meongun"
         }
     },
     "dependent_plugins": {}

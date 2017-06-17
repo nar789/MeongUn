@@ -33,7 +33,7 @@
       </div>
     </center>
   </div>
-  <a id=writing_button href="#pageWriting" data-transition="pop" onclick="returnCurrentWindow()"><img id=writing_icon_image src='images/iconmonstr-pencil-14-48.png'></a>
+
   <div id=header>
     <div id=header_top></div>
     <div id=header_icon_left>
@@ -46,10 +46,10 @@
       <img id=icon src="images/iconmonstr-bell-2-64.png" onclick="sendMsg('bell')">
     </div>
     <div id=header_content>
-      <a id="a_button" href="#page1" data-transition="fade">명언속으로</a>
-      <a id="a_button" href="#page2" data-transition="fade">명언만들기</a>
-      <a id="a_button" href="#page3" data-transition="fade">짧은명언</a>
-      <a id="a_button" href="#page4" data-transition="fade">인기핫</a>
+      <a id="a_button" href="#page1" data-transition="fade">명언</a>
+      <a id="a_button" href="#page2" data-transition="fade">좋은글</a>
+      <a id="a_button" href="#page3" data-transition="fade">나만의명언</a>
+      <a id="a_button" href="#page4" data-transition="fade">인기추천</a>
     </div>
   </div>
   <div class=content data-role="page" id=page1>
@@ -69,6 +69,9 @@
   </div>
   <div class=fullScreen data-role="page" id=pageReading>
     <iframe id=pageReadingIframe src="pageReading.php" class=pageReading></iframe>
+  </div>
+  <div class=fullScreen data-role="page" id=pageReadingAdmin>
+    <iframe id="pageRAdminIframe" src="pageReadingAdmin.php" class=pageReading></iframe>
   </div>
   <div class=fullScreen data-role="page" id=pageSampleImage>
     <iframe id=pageSampleImageIframe src="pageSamplePictureList.php"></iframe>

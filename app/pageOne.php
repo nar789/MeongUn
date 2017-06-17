@@ -80,11 +80,10 @@
         right:2px;
       }
       #content_title_detail{
-        position:relative;
-        top:5px;
-        float:left;
-        margin-left:10px;
-        margin-top:4px;
+        position: relative;
+        top: 10px;
+        color: #696969;
+        font-size: 12px;
       }
       #content_title_profile{
         width:24px;
@@ -120,7 +119,7 @@
         window.parent.postMessage(str,"*");
       }
       function getContentList(){
-        $.get("contentList.php",{category:1,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:1,limit:page,type:type,page:page}).done(function(data){
           document.getElementById('content_content').innerHTML+=data;
           if(data!=""){
             page++;
@@ -133,7 +132,7 @@
       function reloadContentList(){
         page=0;
         document.body.scrollTop=0;
-        $.get("contentList.php",{category:1,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:1,limit:page,type:type,page:page}).done(function(data){
           // alert(data);
           document.getElementById('content_content').innerHTML=data;
           page++;

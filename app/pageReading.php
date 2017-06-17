@@ -14,33 +14,6 @@
         border-left:none;
         border-right:none;
       }
-      #like_icon{
-        width:50px;
-        height:50px;
-        background-color:#2095f2;
-        position:fixed;
-        bottom:200px;
-        right:20px;
-        padding:20px;
-        border-radius:50px;
-      }
-      #like_icon_image{
-        width:50px;
-        height:50px;
-      }
-      #like_icon_text{
-        color: white;
-        width: 90%;
-        border: 1px solid white;
-        padding: 10px;
-        border-radius: 10px;
-        position: relative;
-        top: 5px;
-      }
-      #like_icon_text:hover{
-        background-color:white;
-        color:black;
-      }
       #delete{
         float:right;
         border-radius:21px;
@@ -61,11 +34,50 @@
         margin-right:20px;
         display:none;
       }
+      .utilVar{
+        position:fixed;
+        bottom:0px;
+        left:0px;
+        height:70px;
+        width:100%;
+      }
+      .fifty{
+        height:100%;
+        float:left;
+        width:50%;
+        background-color:black;
+      }
+      #like{
+        color:white;
+        width: 60%;
+        margin-top: 13px;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 11px;
+      }
+      #like:hover{
+        color:black;
+        background-color:white;
+      }
+      #share{
+        color:white;
+        width: 60%;
+        margin-top: 13px;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 11px;
+      }
+      #share:hover{
+        color:black;
+        background-color:white;
+      }
     </style>
     <script>
       var contentNumber;
       var userId;
       var admin=0;
+      var background;
+      var content;
       function clcik_comment_box(){
         $("html,body").animate({scrollTop:document.body.scrollTop+window.innerHeight},600);
       }
@@ -105,6 +117,11 @@
           window.parent.postMessage(json,"*");
         });
       }
+      function click_share_button(){
+        //alert(content+background+contentNumber);
+        var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
+        window.parent.postMessage(json,"*");
+      }
       window.onmessage=function(e){
         if("UPDATECOMMENT"==e.data){
           updateComments(contentNumber,admin);
@@ -130,7 +147,9 @@
             document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
             document.getElementById('content_text').value=decodeURI(j.content);
+            content=decodeURI(j.content);
             document.body.style="background:url("+j.background+") no-repeat center center fixed;background-size: cover;";
+            background=j.background;
           });
           updateComments(contentNumber,oj.admin);
         }
@@ -169,12 +188,14 @@
         </div>
       </div>
     </div>
-    <div id =insert_like>
-      <center>
-        <div id=like_icon_text onclick="click_like_button()">
-          좋아요!
-        </div>
-      </center>
+    <!--  -->
+    <div class=utilVar>
+      <div class=fifty>
+        <center><div id=like onclick="click_like_button()">좋아요</div></center>
+      </div>
+      <div class=fifty>
+        <center><div id=share onclick="click_share_button()">공유하기</div></center>
+      </div>
     </div>
   </body>
 </html>

@@ -47,14 +47,7 @@
             img=j.image_src;
             $("#modal").fadeOut();
           }else if(j.title="category"){
-
-            if(j.category.indexOf('#page1')!=-1){
-              target_board=1;
-            }else if(j.category.indexOf('#page2')!=-1){
-              target_board=2;
-            }else if(j.category.indexOf('#page3')!=-1){
-              target_board=3;
-            }
+            target_board=3;
           }
         }
       }
@@ -136,6 +129,7 @@
         background-color: rgba(0,0,0,0.6);
         padding: 10px;
         border-radius: 25px;
+        margin-left: 10px;
       }
     </style>
   </head>

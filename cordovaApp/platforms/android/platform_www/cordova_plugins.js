@@ -64,6 +64,38 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.headerColor"
         ]
+    },
+    {
+        "id": "cordova-plugin-htj-kakaotalk.KakaoTalk",
+        "file": "plugins/cordova-plugin-htj-kakaotalk/www/KakaoTalk.js",
+        "pluginId": "cordova-plugin-htj-kakaotalk",
+        "clobbers": [
+            "KakaoTalk"
+        ]
+    },
+    {
+        "id": "cordova-plugin-sim.Sim",
+        "file": "plugins/cordova-plugin-sim/www/sim.js",
+        "pluginId": "cordova-plugin-sim",
+        "merges": [
+            "window.plugins.sim"
+        ]
+    },
+    {
+        "id": "cordova-plugin-sim.SimAndroid",
+        "file": "plugins/cordova-plugin-sim/www/android/sim.js",
+        "pluginId": "cordova-plugin-sim",
+        "merges": [
+            "window.plugins.sim"
+        ]
+    },
+    {
+        "id": "cordova-plugin-fcm.FCMPlugin",
+        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
+        "pluginId": "cordova-plugin-fcm",
+        "clobbers": [
+            "FCMPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -77,7 +109,10 @@ module.exports.metadata =
     "com.borismus.webintent": "1.0.0",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-statusbar": "2.2.3",
-    "cordova-plugin-headercolor": "1.0"
+    "cordova-plugin-headercolor": "1.0",
+    "cordova-plugin-htj-kakaotalk": "1.0.0",
+    "cordova-plugin-sim": "1.3.3",
+    "cordova-plugin-fcm": "2.1.2"
 };
 // BOTTOM OF METADATA
 });

@@ -25,13 +25,26 @@
         <param name="android-package" value="tomloprod.HeaderColor" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="KakaoTalk">
+        <param name="android-package" value="com.htj.plugin.kakao.KakaoTalk" />
+    </feature>
+    <access origin="https://*.kakao.com" />
+    <access origin="https://*.kakao.co.kr" />
+    <access origin="https://*.kakaocdn.net" />
+    <feature name="Sim">
+        <param name="android-package" value="com.pbakondy.Sim" />
+    </feature>
+    <feature name="FCMPlugin">
+        <param name="android-package" value="com.gae.scaffolder.plugin.FCMPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="SimpleToastPlugin">
         <param name="android-package" value="com.ferdinandsilva.android.SimpleToastPlugin" />
     </feature>
     <feature name="SQLitePlugin">
         <param name="android-package" value="com.nolanlawson.cordova.sqlite.SQLitePlugin" />
     </feature>
-    <name>우리들의명언</name>
+    <name>긍정의하루</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

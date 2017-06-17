@@ -10,6 +10,22 @@
         background-color:black;
         margin:0px;
       }
+      #writing_button{
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        background-color: #f34235;
+        right: 30px;
+        bottom: 90px;
+        border-radius: 50px;
+        padding: 20px;
+        z-index: 10;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+      }
+      #writing_icon_image{
+        width: 30px;
+        height: 30px;
+      }
       #header{
         width:100%;
         height:30px;
@@ -45,7 +61,7 @@
       }
       #content_image{
         width:100%;
-        height:130px;
+        height: 165px;
         border-radius:10px;
       }
       #content_title{
@@ -101,10 +117,13 @@
       #sample_text{
         display: inline-block;
         position: relative;
-        bottom: 150px;
-        background-color: rgba(0,0,0,0.7);
-        color: white;
-        padding: 3px;
+        bottom: 65px;
+        background-color: rgba(0,0,0,0.5);
+        color: rgba(255,255,255,0.8);
+        padding: 5px 0px 5px 0px;
+        width: 100%;
+        height: 16px;
+        font-size: 12px;
       }
       #like_text{
         color:#a9a9a9;
@@ -120,7 +139,7 @@
         window.parent.postMessage(str,"*");
       }
       function getContentList(){
-        $.get("contentList.php",{category:3,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:3,limit:page,type:type,page:3}).done(function(data){
           document.getElementById('content_content').innerHTML+=data;
           if(data!=""){
             page++;
@@ -133,7 +152,7 @@
       function reloadContentList(){
         page=0;
         document.body.scrollTop=0;
-        $.get("contentList.php",{category:3,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:3,limit:page,type:type,page:3}).done(function(data){
           // alert(data);
           document.getElementById('content_content').innerHTML=data;
           page++;
@@ -173,10 +192,14 @@
           reloadContentList();
         }
       }
+      function moveWriting(){
+        let str='WRITING';
+        window.parent.postMessage(str,"*");
+      }
     </script>
   </head>
   <body>
-
+    <a id=writing_button onclick="moveWriting()" data-transition="pop"><img id=writing_icon_image src='images/iconmonstr-pencil-14-48.png'></a>
     <div id=header>
       <div class=icon onclick="changeType(3)"  style="display:none;">새로고침</div>
       <div class=icon id=like_text onclick="changeType(1)">인기글</div>

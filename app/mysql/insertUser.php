@@ -4,11 +4,6 @@
   $email=$_GET['email'];
   $password=$_GET['password'];
 
-  $coremail=strpos($email,"@");
-  if($coremail===false){
-    echo "iligal-e-amil";
-    return;
-  }
   $query="SELECT * FROM MeongUnUser WHERE email='$email'";
   if($result=mysqli_query($con,$query)){
     while($row=mysqli_fetch_row($result)){

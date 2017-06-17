@@ -43,6 +43,62 @@ function dbinit(){ //database init.
 //////////////////////////////////////////////////////
 ///////////////////DB MODULE//////////////////////////
 //////////////////////////////////////////////////////
+//KAKAOTALK
+function kakaoShare(content,img_src){
+  KakaoTalk.share({
+    text : content,
+    image : {
+      src : 'http://total0808.cafe24.com/meong-un/app/'+img_src,
+      width : 138,
+      height : 90,
+    },
+
+    applink :{
+      url : 'http://total0808.cafe24.com/meong-un/app/',
+      text : '앱으로 이동',
+    },
+    params :{
+      paramKey1 : 'paramVal',
+      param1 : 'param1Value',
+      cardId : '27',
+      keyStr : 'hey'
+    }
+  },
+  function (success) {
+    console.log('kakao share success');
+  },
+  function (error) {
+    console.log('kakao share error');
+  });
+}
+// Android only: check permission
+function hasReadPermission() {
+  window.plugins.sim.hasReadPermission((s)=>{alert(s);if(s.equals('false')){
+    alert('false');
+    requestReadPermission();}},(r)=>{alert(r)});
+}
+
+// Android only: request permission
+function requestReadPermission() {
+  window.plugins.sim.requestReadPermission((s)=>{
+    window.plugins.sim.getSimInfo((result)=>{
+      //alert(result.phoneNumber);
+      checkLoginStatus((e)=>{
+        if(e){
+          //window.plugins.alertdialog.show('testTitle', 'OLD', 'buttonOk');
+          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
+        }else{
+          //window.plugins.alertdialog.show('testTitle', 'NEW', 'buttonOk');
+          setLoginStatus(result.phoneNumber);
+          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
+        }
+      });
+    },()=>{})
+  },(r)=>{navigator.app.exitApp();});
+}
+//KAKAOTALK
+var kakaoLoginStatus=0;
+var tokenValue;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -53,16 +109,22 @@ var app = {
           // Change the color
           window.plugins.headerColor.tint("#000000");
       }, false);
-      dbinit();
-      checkLoginStatus(function(e){
-        if(e){
-          //window.plugins.alertdialog.show('testTitle', 'OLD', 'buttonOk');
-          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+myid;
-        }else{
-          //window.plugins.alertdialog.show('testTitle', 'NEW', 'buttonOk');
-          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=new";
-        }
+      FCMPlugin.getToken(function(token){
+        tokenValue=token;
       });
+      FCMPlugin.onNotification(function(data){
+          if(data.wasTapped){
+            //Notification was received on device tray and tapped by the user.
+            alert( JSON.stringify(data) );
+          }else{
+            //Notification was received in foreground. Maybe the user needs to be notified. 
+            alert( JSON.stringify(data) );
+          }
+      });
+      dbinit();
+      requestReadPermission();
+
+
       //Native Alert
       //window.plugins.alertdialog.show('testTitle', 'Success Message!', 'buttonOk');
       //Toast
@@ -78,8 +140,10 @@ var app = {
 
         }else if(e.data=="signBack"){
 
-        }else{
+        }else if(e.data=="kakaologin"){
 
+        }else{
+          //alert(e.data);
           var JSONDATA=JSON.parse(e.data);
           //window.plugins.alertdialog.show('testTitle', JSONDATA, 'buttonOk');
           if(JSONDATA.title=="url"){
@@ -97,6 +161,28 @@ var app = {
               function() {},
               function() {alert('Failed to open URL via Android Intent');}
             );
+          }else if(JSONDATA.title=="share"){
+            alert(e.content);
+            if(kakaoLoginStatus==0){
+              // KakaoTalk.login(
+              //     function (result) {
+              //       console.log('Successful login!');
+              //       console.log(result);
+              //       kakaoShare();
+              //       kakaoLoginStatus=1;
+              //     },
+              //     function (message) {
+              //       console.log('Error logging in');
+              //       console.log(message);
+              //     }
+              // );
+              alert(e);
+              kakaoShare(JSONDATA.content,JSONDATA.back);
+            }else{
+              //kakaoShare();
+              //alert(JSONDATA.content+JSONDATA.back+JSONDATA.no);
+
+            }
           }
         }
       }

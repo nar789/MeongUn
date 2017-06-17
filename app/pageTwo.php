@@ -120,7 +120,7 @@
         window.parent.postMessage(str,"*");
       }
       function getContentList(){
-        $.get("contentList.php",{category:2,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:2,limit:page,type:type,page:page}).done(function(data){
           document.getElementById('content_content').innerHTML+=data;
           if(data!=""){
             page++;
@@ -133,7 +133,7 @@
       function reloadContentList(){
         page=0;
         document.body.scrollTop=0;
-        $.get("contentList.php",{category:2,limit:page,type:type}).done(function(data){
+        $.get("contentList.php",{category:2,limit:page,type:type,page:page}).done(function(data){
           // alert(data);
           document.getElementById('content_content').innerHTML=data;
           page++;

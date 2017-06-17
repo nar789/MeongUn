@@ -14,7 +14,29 @@ function returnCurrentWindow(){
   var json='{"title":"category","category":"'+window.location.href+'"}';
   document.getElementById('pageWritingIframe').contentWindow.postMessage(json,'*');
 }
+
 window.onload=function(){
+  var id=document.getElementById('userId').value;
+  if(id==""){
+    alert("웹");
+  }else{
+    $.get("mysql/insertUser.php?nickname="+id+"&email="+id+"&password="+id)
+    .done(function(data){
+      //alert(data);
+    });
+  }
+
+  $(window).on("navigate", function (event, data) {
+    var direction = data.state.direction;
+    if (direction == 'back') {
+      if(window.location.href.indexOf("#pageReading")!=-1||window.location.href.indexOf("#pageWriting")!=-1){
+        var json='exitApp';
+        window.parent.postMessage(json,"*");
+      }
+    }
+    if (direction == 'forward') {
+    }
+  });
   if(document.getElementById('isadmin').value=='admin'){
     admin=1;
   }
@@ -34,6 +56,8 @@ window.onmessage=function(e){
     window.history.back();
   }else if(e.data=="PICTURE"){
     window.location.href="#pageSampleImage";
+  }else if(e.data=="WRITING"){
+    window.location.href="#pageWriting";
   }else if(e.data=="CAMERA"){
   //alert("camear");
   }else if(e.data=="COMMENT_INPUT"){
@@ -79,8 +103,13 @@ window.onmessage=function(e){
         }else if(data=="true"){
           var json='{"no":"'+j.no+'","author":"true","admin":"'+admin+'"}';
         }
-        document.getElementById('pageReadingIframe').contentWindow.postMessage(json,'*');
-        window.location.href="#pageReading";
+        if(window.location.href.indexOf("#page3")==-1){
+          document.getElementById('pageRAdminIframe').contentWindow.postMessage(json,'*');
+          window.location.href="#pageReadingAdmin";
+        }else{
+          document.getElementById('pageReadingIframe').contentWindow.postMessage(json,'*');
+          window.location.href="#pageReading";
+        }
       });
 
     }else if(j.title=="comment"){
@@ -114,6 +143,11 @@ window.onmessage=function(e){
       var json='{"title":"image_src","image_src":"'+j.image_src+'"}';
       document.getElementById('pageWritingIframe').contentWindow.postMessage(json,'*');
       window.history.back();
+    }else if(j.title=="share"){
+      var json='{"title":"share","content":"'+j.content+'","back":"'+j.back+'","no":"'+j.no+'"}';
+      alert(json);
+      window.parent.postMessage(json,"*");
+      //alert(j.content+j.back+j.no);
     }
   }
 }

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.hume.meongun" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>우리들의명언</name>
+    <name>긍정의하루</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -27,4 +27,9 @@
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <plugin name="cordova-plugin-statusbar" spec="~2.2.3" />
     <plugin name="cordova-plugin-headercolor" spec="https://github.com/tomloprod/cordova-plugin-headercolor" />
+    <plugin name="cordova-plugin-htj-kakaotalk" spec="https://github.com/taejaehan/cordova-kakaotalk.git">
+        <variable name="KAKAO_APP_KEY" value="85a68fd77cd2a32c013696bda6f59677" />
+    </plugin>
+    <plugin name="cordova-plugin-sim" spec="~1.3.3" />
+    <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
 </widget>
