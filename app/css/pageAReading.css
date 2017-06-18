@@ -6,9 +6,9 @@ textarea{
   background-color:inherit;
   border:none;
   width:100%;
-  height:100%;
-  color:white;
-  font-size:26px;
+  height: auto;
+  color:black;
+  font-size:10px;
   padding:13px;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
   outline:none;
@@ -40,22 +40,20 @@ textarea{
   height:18px;
 }
 #content{
-  width:90%;
-  height:50%;
-  background-color: rgba(0,0,0,0.4);
+  width:100%;
+  height:auto;
   box-shadow: 0px 0px 4px rgba(0,0,0, 0.5);
 }
 #post_date{
   display:inline-block;
   float:right;
-  color:white;
+  color:black;
   margin-right:8px;
   font-size:15px;
 }
 #comment_list{
   width:100%;
   height:auto;
-  background-color:rgba(0,0,0,0.6);
       margin-bottom: 140px;
 }
 #comment{
@@ -77,8 +75,8 @@ textarea{
   width:100%;
 }
 #comment_profile{
-  width:48px;
-  height:48px;
+  width: 28px;
+  height: 28px;
 }
 .clear{
   clear:both;
@@ -87,20 +85,22 @@ textarea{
   display:inline-block;
   width:100%;
   text-align:left;
-  color:white;
+  color:black;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
-  font-size:18px;
+  font-size:10px;
 }
 #comment_post_time{
-  color:white;
-  font-size:16px;
-  margin-left:16px;
+  color: black;
+  font-size: 8px;
+  margin-left: 16px;
+  position: relative;
+  bottom: 2px;
 }
 #comment_content{
   text-align:left;
-  color:white;
+  color:black;
   margin-top:4px;
-  font-size:16px;
+  font-size:8px;
 }
 #under_margin{
   height:60px;
@@ -139,7 +139,7 @@ textarea{
   border-color:rgba(254,86,33,0.8);
   border-style:solid;
   border-width:0px 0px 3px;
-  color:white;
+  color:black;
   margin-top:5px;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
   font-size:20px;
@@ -173,4 +173,8 @@ textarea{
   top:7.5px;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
       text-align: center;
+}
+#mainImage{
+  width: 100%;
+  height: 60%;
 }

@@ -144,7 +144,7 @@
           userId=oj.userId;
           $.get("contentDetail.php",{no:oj.no}).done(function(result){
             var j=JSON.parse(result);
-            document.getElementById('post_date').innerHTML=j.time;
+            //document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
             document.getElementById('content_text').value=decodeURI(j.content);
             content=decodeURI(j.content);
@@ -162,13 +162,14 @@
       <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
       <div id=space>긍정의 하루</div>
-      <div id=post_date></div>
+      <!-- <div id=post_date></div> -->
       <img class=icon id=delete onclick="deleteContents()" src="images/iconmonstr-trash-can-9-64.png">
       <img class=icon id=upload onclick="updateContents()" src="images/iconmonstr-upload-19-64.png">
     </div>
+    <img id=mainImage>
     <center>
       <div id=content>
-        <img id=mainImage>
+
         <textarea id=content_text></textarea>
         <div id=comment_list>
         </div>

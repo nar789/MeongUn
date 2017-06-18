@@ -18,7 +18,7 @@ function returnCurrentWindow(){
 window.onload=function(){
   var id=document.getElementById('userId').value;
   if(id==""){
-    alert("웹");
+    //alert("웹");
   }else{
     $.get("mysql/insertUser.php?nickname="+id+"&email="+id+"&password="+id)
     .done(function(data){
