@@ -3,6 +3,8 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="css/pageReading.css">
     <style>
+    @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
       body{
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -71,8 +73,51 @@
         color:black;
         background-color:white;
       }
+      #shareModal{
+        display:none;
+        position:absolute;
+        width:100%;
+        height:100%;
+        background-color:rgba(0,0,0,0.5);
+        left:0px;
+        top:0px;
+        z-index:50;
+      }
+      #shareModalTop{
+        width:100%;
+        height:10%;
+      }
+      #shareModalContent{
+        width: 85%;
+        height: auto;
+        background-color:white;
+      }
+      #shareImage{
+        width:100%;
+        height: 200px;
+      }
+      .shareIcon{
+        width:24px;
+        height:24px;
+        float: left;
+        margin-top: 7px;
+        margin-left: 8px;
+      }
+      .shareLine{
+        width:90%;
+        height:38px;
+        margin:10px;
+      }
+      .shareText{
+        font-family: 'Nanum Gothic', serif;
+        position: relative;
+        top: 10px;
+        font-size: 15px;
+      }
     </style>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
+
       var contentNumber;
       var userId;
       var admin=0;
@@ -119,8 +164,7 @@
       }
       function click_share_button(){
         //alert(content+background+contentNumber);
-        var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
-        window.parent.postMessage(json,"*");
+        document.getElementById('shareModal').style.display="block";
       }
       window.onmessage=function(e){
         if("UPDATECOMMENT"==e.data){
@@ -150,14 +194,52 @@
             content=decodeURI(j.content);
             document.body.style="background:url("+j.background+") no-repeat center center fixed;background-size: cover;";
             background=j.background;
+            document.getElementById("shareImage").src=background;
           });
           updateComments(contentNumber,oj.admin);
         }
 
       }
+      function shareTalk(){
+        var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
+        window.parent.postMessage(json,"*");
+      }
+      function shareStory(){
+        Kakao.Story.share({
+          //url: 'https://dev.kakao.com',
+          text: content
+        });
+      }
+      function shareBook(){
+        FB.ui({
+          method: 'share',
+          href: 'https://developers.facebook.com/docs/',
+        }, function(response){});
+      }
     </script>
   </head>
   <body>
+    <div id=shareModal onclick="document.getElementById('shareModal').style.display='none'">
+      <div id=shareModalTop></div>
+      <center>
+        <div id=shareModalContent>
+          <img id=shareImage>
+          <div class=shareLine onclick="shareTalk()" style="background-color:#ffeb00">
+            <img class=shareIcon src="images/kakaolink_btn_small.png">
+            <font class=shareText>카카오톡으로 공유하기</font>
+          </div>
+          <div class=shareLine onclick="shareStory()" style="background-color:#f9e000">
+            <img class=shareIcon src="images/kakaostory_icon.png">
+            <font class=shareText>카카오스토리로 공유하기</font>
+          </div>
+          <div class=shareLine onclick="shareBook()" style="background-color:#3b5998">
+            <img class=shareIcon style="position: relative;right: 4px;"src="images/FB-fLogo-Blue-broadcast-2.png">
+            <font class=shareText style="color:white;">페이스북으로 공유하기</font>
+          </div>
+          <div style="width:100%;height:10px;"></div>
+        </div>
+      </center>
+    </div>
     <div id=icon_box>
       <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
@@ -198,4 +280,22 @@
       </div>
     </div>
   </body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '309741419478273',
+        xfbml      : true,
+        version    : 'v2.9'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
 </html>

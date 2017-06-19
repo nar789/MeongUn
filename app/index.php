@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+  <a href="myApp://goActivity?activity_name=main"></a>
   <div id=modal style="<?php echo ($_GET['login']=='new') ? 'display:block':'display:none'?>">
     <div id=topMargin></div>
     <center>
