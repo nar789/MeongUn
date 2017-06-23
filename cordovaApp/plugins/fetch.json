@@ -107,12 +107,54 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-fcm": {
+    "cordova-plugin-urlhandler": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-fcm"
+            "id": "cordova-plugin-urlhandler"
         },
         "is_top_level": true,
+        "variables": {
+            "URL_SCHEME": "meongun"
+        }
+    },
+    "cordova-promise-polyfill": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-promise-polyfill@~0.0.1"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-admob-sdk": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-admob-sdk@~0.7.0"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-admob-sdklibs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-admob-sdklibs"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-admobpro": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-admobpro"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-extension": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-extension"
+        },
+        "is_top_level": false,
         "variables": {}
     }
 }

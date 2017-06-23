@@ -90,11 +90,19 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-fcm.FCMPlugin",
-        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
-        "pluginId": "cordova-plugin-fcm",
+        "id": "cordova-plugin-urlhandler.LaunchMyApp",
+        "file": "plugins/cordova-plugin-urlhandler/www/android/LaunchMyApp.js",
+        "pluginId": "cordova-plugin-urlhandler",
         "clobbers": [
-            "FCMPlugin"
+            "window.plugins.launchmyapp"
+        ]
+    },
+    {
+        "id": "cordova-plugin-admobpro.AdMob",
+        "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
+        "pluginId": "cordova-plugin-admobpro",
+        "clobbers": [
+            "window.AdMob"
         ]
     }
 ];
@@ -112,7 +120,9 @@ module.exports.metadata =
     "cordova-plugin-headercolor": "1.0",
     "cordova-plugin-htj-kakaotalk": "1.0.0",
     "cordova-plugin-sim": "1.3.3",
-    "cordova-plugin-fcm": "2.1.2"
+    "cordova-plugin-urlhandler": "0.7.0",
+    "cordova-plugin-extension": "1.5.1",
+    "cordova-plugin-admobpro": "2.29.0"
 };
 // BOTTOM OF METADATA
 });

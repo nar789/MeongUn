@@ -175,7 +175,7 @@
     </script>
   </head>
   <body>
-
+    
     <div id=header>
       <div class=icon onclick="changeType(3)" style="display:none;">새로고침</div>
       <div class=icon id=like_text onclick="changeType(1)">인기글</div>

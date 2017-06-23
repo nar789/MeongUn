@@ -9,8 +9,8 @@
 
   echo "CATEGORY:::::".$category.":::::::::::::";
 
-  echo $query="INSERT INTO MeongUnContents(no,date,img_src,content,like_counter,comment_counter,author,category)
-  VALUES(NULL,'$today','$img_src','$content',0,0,'$author','$category')";
+  echo $query="INSERT INTO MeongUnContents(no,date,img_src,content,like_counter,comment_counter,author,category,title)
+  VALUES(NULL,'$today','$img_src','$content',0,0,'$author','$category','')";
   mysqli_query($con,$query);
   echo "Suc";
 ?>

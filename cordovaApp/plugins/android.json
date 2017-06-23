@@ -41,9 +41,17 @@
         "cordova-plugin-sim": {
             "PACKAGE_NAME": "com.hume.meongun"
         },
-        "cordova-plugin-fcm": {
+        "cordova-plugin-urlhandler": {
+            "URL_SCHEME": "meongun",
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-admobpro": {
             "PACKAGE_NAME": "com.hume.meongun"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        }
+    }
 }

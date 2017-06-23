@@ -117,7 +117,6 @@
     </style>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
-
       var contentNumber;
       var userId;
       var admin=0;
@@ -187,6 +186,7 @@
           }
           userId=oj.userId;
           $.get("contentDetail.php",{no:oj.no}).done(function(result){
+            
             var j=JSON.parse(result);
             document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
@@ -206,14 +206,14 @@
       }
       function shareStory(){
         Kakao.Story.share({
-          //url: 'https://dev.kakao.com',
+          url: 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+contentNumber,
           text: content
         });
       }
       function shareBook(){
         FB.ui({
           method: 'share',
-          href: 'https://developers.facebook.com/docs/',
+          href: 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+contentNumber,
         }, function(response){});
       }
     </script>

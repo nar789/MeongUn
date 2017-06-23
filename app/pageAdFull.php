@@ -1,0 +1,11 @@
+<?php
+  include("utills/FullAdModule.php");
+  FullAd();
+?>
+<script>
+  window.onmessage=function(e){
+    if(e.data=="RESET"){
+      location.reload();
+    }
+  }
+</script>

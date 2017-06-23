@@ -76,6 +76,9 @@
   <div class=fullScreen data-role="page" id=pageSampleImage>
     <iframe id=pageSampleImageIframe src="pageSamplePictureList.php"></iframe>
   </div>
+  <div class=fullScreen data-role="page" id=pageAdFull>
+    <iframe id=pageAd src="pageAdFull.php">
+  </div>
 </body>
 
 </html>

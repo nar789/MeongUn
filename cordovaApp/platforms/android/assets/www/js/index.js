@@ -43,10 +43,25 @@ function dbinit(){ //database init.
 //////////////////////////////////////////////////////
 ///////////////////DB MODULE//////////////////////////
 //////////////////////////////////////////////////////
+////admob//
+function init_admob(){
+  var admobid = {};
+  if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+    admobid = {
+      interstitial: 'ca-app-pub-1542264535834690/5985608766'
+    };
+  }
+  if(AdMob) AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
+  if(AdMob){
+    AdMob.showInterstitial();
+    //alert("admobLOAD");
+  }
+}
+//////////
 //KAKAOTALK
-function kakaoShare(content,img_src){
+function kakaoShare(content,img_src,no){
   KakaoTalk.share({
-    text : content,
+    text : "세상의 모든 명언\n"+content,
     image : {
       src : 'http://total0808.cafe24.com/meong-un/app/'+img_src,
       width : 138,
@@ -54,7 +69,7 @@ function kakaoShare(content,img_src){
     },
 
     applink :{
-      url : 'http://total0808.cafe24.com/meong-un/app/',
+      url : 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+no,
       text : '앱으로 이동',
     },
     params :{
@@ -109,22 +124,9 @@ var app = {
           // Change the color
           window.plugins.headerColor.tint("#000000");
       }, false);
-      FCMPlugin.getToken(function(token){
-        tokenValue=token;
-      });
-      FCMPlugin.onNotification(function(data){
-          if(data.wasTapped){
-            //Notification was received on device tray and tapped by the user.
-            alert( JSON.stringify(data) );
-          }else{
-            //Notification was received in foreground. Maybe the user needs to be notified.
-            alert( JSON.stringify(data) );
-          }
-      });
       dbinit();
       requestReadPermission();
-
-
+      init_admob();
       //Native Alert
       //window.plugins.alertdialog.show('testTitle', 'Success Message!', 'buttonOk');
       //Toast
@@ -177,7 +179,7 @@ var app = {
               //     }
               // );
               alert(e);
-              kakaoShare(JSONDATA.content,JSONDATA.back);
+              kakaoShare(JSONDATA.content,JSONDATA.back,JSONDATA.no);
             }else{
               //kakaoShare();
               //alert(JSONDATA.content+JSONDATA.back+JSONDATA.no);

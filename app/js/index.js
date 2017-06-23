@@ -1,4 +1,5 @@
 var admin=0;
+var isnowad=0;
 function sendMsg(target){
   if(target=="pencil"){
     // var json='{"title":"data","data":"pencil"}';
@@ -32,6 +33,14 @@ window.onload=function(){
       if(window.location.href.indexOf("#pageReading")!=-1||window.location.href.indexOf("#pageWriting")!=-1){
         var json='exitApp';
         window.parent.postMessage(json,"*");
+      }else{
+        if(isnowad==1){
+          isnowad=0;
+        }else{
+          isnowad=1;
+          document.getElementById('pageAd').contentWindow.postMessage("RESET",'*');
+          window.location.href="#pageAdFull";
+        }
       }
     }
     if (direction == 'forward') {
@@ -52,6 +61,13 @@ function reloadAllData(){
 window.onmessage=function(e){
   if(e.data=="BACK"){
     window.location.href="#page1";
+    if(isnowad==1){
+      isnowad=0;
+    }else{
+      isnowad=1;
+      document.getElementById('pageAd').contentWindow.postMessage("RESET",'*');
+      window.location.href="#pageAdFull";
+    }
   }else if(e.data=="BACK_WRITING"){
     window.history.back();
   }else if(e.data=="PICTURE"){
@@ -60,9 +76,15 @@ window.onmessage=function(e){
     window.location.href="#pageWriting";
   }else if(e.data=="CAMERA"){
   //alert("camear");
+  }else if(e.data=="AD"){
+    isnowad=1;
+    alert("AD");
+    window.location.href="#pageAdFull";
+  }else if(e.data=="HISTORY"){
+    window.history.back();
   }else if(e.data=="COMMENT_INPUT"){
-    // var readIframe=document.getElementById('pageReadingIframe');
-    // readIframe.scrollTop=readIframe.scrollHeight;
+      // var readIframe=document.getElementById('pageReadingIframe');
+      // readIframe.scrollTop=readIframe.scrollHeight;
     // alert(readIframe.scrollTop);
   }else{
     var j=JSON.parse(e.data);
@@ -87,13 +109,12 @@ window.onmessage=function(e){
     }else if(j.title=="writing"){
       $.post("mysql/insertContent.php",{img_src:j.image,content:j.content,author:document.getElementById('userId').value,category:j.category})
       .done(function(data){
-        // alert("Data Loaded:"+data);
+        alert("Data Loaded:"+data);
         if(document.getElementById('isadmin').value=='admin'){location.reload();}
         reloadAllData();
 
         var json='{"title":"toast","toast":"'+'성공적으로 등록되었습니다.'+'"}';
         window.parent.postMessage(json,"*");
-        //alert(json);
       });
     }else if(j.title=="READ"){
       $.get("mysql/checkIsMyContents.php",{no:j.no,author:document.getElementById('userId').value})

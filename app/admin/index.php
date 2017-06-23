@@ -24,7 +24,8 @@
 				<li><a href="#" class="icon-check" id="navItem3" onclick="frameInsert('adminAnounce.php')">공지사항</a></li>
 				<li><a href="#" class="icon-check" id="navItem4" onclick="frameInsert('adminGalary.php')">사진</a></li>
 				<li><a href="#" class="icon-check" id="navItem4" onclick="frameInsert('adminRecommendApp.php')">인기핫</a></li>
-				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminAnounce.php')">광고</a></li>
+				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminAdBanner.php')">광고배너</a></li>
+				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminAdFull.php')">광고전면</a></li>
 			</ul>
 			<div class="main">
 				<iframe id=main-frame></iframe>

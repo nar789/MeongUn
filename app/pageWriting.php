@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/pageWriting.css">
 
     <script>
-      var target_board=1;
+      var target_board=3;
       var img="<?php echo $rand_image?>";
       function sendMsg(str){
         window.parent.postMessage(str,"*");
@@ -29,7 +29,7 @@
         var content=encodeURI(document.getElementById('content_text').value);
 
         let json_data='{"title":"writing","content":"'+content+'","image":"'+img+'","category":"'+target_board+'"}';
-        // alert(json_data);
+        alert(json_data);
         window.parent.postMessage(json_data,"*");
         window.history.back();
       }
