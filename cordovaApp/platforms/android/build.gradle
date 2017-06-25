@@ -89,6 +89,7 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "cordova-plugin-htj-kakaotalk/meongun-kakao.gradle"
+apply from: "cordova-plugin-fcm/meongun-FCMPlugin.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -250,8 +251,10 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
-    compile "com.google.android.gms:play-services-base:+"
-    compile "com.google.android.gms:play-services-ads:+"
+    compile "com.google.android.gms:play-services-base:9.0.0"
+    compile "com.google.android.gms:play-services-ads:9.0.0"
+    compile "com.google.firebase:firebase-core:9.0.0"
+    compile "com.google.firebase:firebase-messaging:9.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

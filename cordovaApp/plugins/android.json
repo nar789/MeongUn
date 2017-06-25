@@ -45,12 +45,18 @@
             "URL_SCHEME": "meongun",
             "PACKAGE_NAME": "com.hume.meongun"
         },
-        "cordova-plugin-admobpro": {
+        "cordova-plugin-admob-free": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-plugin-fcm": {
             "PACKAGE_NAME": "com.hume.meongun"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-extension": {
+        "cordova-promise-polyfill": {
+            "PACKAGE_NAME": "com.hume.meongun"
+        },
+        "cordova-admob-sdk": {
             "PACKAGE_NAME": "com.hume.meongun"
         }
     }

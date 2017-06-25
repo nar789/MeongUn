@@ -98,11 +98,32 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-admobpro.AdMob",
-        "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
-        "pluginId": "cordova-plugin-admobpro",
+        "id": "cordova-promise-polyfill.Promise",
+        "file": "plugins/cordova-promise-polyfill/www/Promise.js",
+        "pluginId": "cordova-promise-polyfill",
+        "runs": true
+    },
+    {
+        "id": "cordova-promise-polyfill.promise.min",
+        "file": "plugins/cordova-promise-polyfill/www/promise.min.js",
+        "pluginId": "cordova-promise-polyfill"
+    },
+    {
+        "id": "cordova-plugin-admob-free.AdMob",
+        "file": "plugins/cordova-plugin-admob-free/www/admob.js",
+        "pluginId": "cordova-plugin-admob-free",
         "clobbers": [
-            "window.AdMob"
+            "admob",
+            "AdMob",
+            "plugins.AdMob"
+        ]
+    },
+    {
+        "id": "cordova-plugin-fcm.FCMPlugin",
+        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
+        "pluginId": "cordova-plugin-fcm",
+        "clobbers": [
+            "FCMPlugin"
         ]
     }
 ];
@@ -121,8 +142,10 @@ module.exports.metadata =
     "cordova-plugin-htj-kakaotalk": "1.0.0",
     "cordova-plugin-sim": "1.3.3",
     "cordova-plugin-urlhandler": "0.7.0",
-    "cordova-plugin-extension": "1.5.1",
-    "cordova-plugin-admobpro": "2.29.0"
+    "cordova-promise-polyfill": "0.0.2",
+    "cordova-admob-sdk": "0.7.0",
+    "cordova-plugin-admob-free": "0.9.0",
+    "cordova-plugin-fcm": "2.1.2"
 };
 // BOTTOM OF METADATA
 });

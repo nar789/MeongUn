@@ -44,19 +44,7 @@ function dbinit(){ //database init.
 ///////////////////DB MODULE//////////////////////////
 //////////////////////////////////////////////////////
 ////admob//
-function init_admob(){
-  var admobid = {};
-  if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
-    admobid = {
-      interstitial: 'ca-app-pub-1542264535834690/5985608766'
-    };
-  }
-  if(AdMob) AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
-  if(AdMob){
-    AdMob.showInterstitial();
-    //alert("admobLOAD");
-  }
-}
+
 //////////
 //KAKAOTALK
 function kakaoShare(content,img_src,no){
@@ -97,9 +85,11 @@ function hasReadPermission() {
 function requestReadPermission() {
   window.plugins.sim.requestReadPermission((s)=>{
     window.plugins.sim.getSimInfo((result)=>{
+      //
       //alert(result.phoneNumber);
       checkLoginStatus((e)=>{
         if(e){
+
           //window.plugins.alertdialog.show('testTitle', 'OLD', 'buttonOk');
           document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
         }else{
@@ -112,6 +102,15 @@ function requestReadPermission() {
   },(r)=>{navigator.app.exitApp();});
 }
 //KAKAOTALK
+function admobShow(){
+  admob.interstitial.config({
+   id: 'ca-app-pub-1542264535834690/5985608766',
+  })
+
+  admob.interstitial.prepare()
+
+  admob.interstitial.show()
+}
 var kakaoLoginStatus=0;
 var tokenValue;
 var app = {
@@ -124,9 +123,39 @@ var app = {
           // Change the color
           window.plugins.headerColor.tint("#000000");
       }, false);
+      FCMPlugin.getToken(
+        function(token){
+          $.get("http://total0808.cafe24.com/meong-un/app/admin/tokenManagement.php",{
+            token:token
+          }).done(function(){
+
+          });
+        },
+        function(err){
+          console.log('error retrieving token: ' + err);
+        }
+      );
+      FCMPlugin.onNotification(
+      function(data){
+        if(data.wasTapped){
+          //Notification was received on device tray and tapped by the user.
+          //alert( JSON.stringify(data) );
+        }else{
+          //Notification was received in foreground. Maybe the user needs to be notified.
+          //alert( JSON.stringify(data) );
+        }
+        },
+        function(msg){
+          console.log('onNotification callback successfully registered: ' + msg);
+        },
+        function(err){
+          console.log('Error registering onNotification callback: ' + err);
+        }
+      );
       dbinit();
+      admobShow();
+
       requestReadPermission();
-      init_admob();
       //Native Alert
       //window.plugins.alertdialog.show('testTitle', 'Success Message!', 'buttonOk');
       //Toast
@@ -164,7 +193,7 @@ var app = {
               function() {alert('Failed to open URL via Android Intent');}
             );
           }else if(JSONDATA.title=="share"){
-            alert(e.content);
+            //alert(e.content);
             if(kakaoLoginStatus==0){
               // KakaoTalk.login(
               //     function (result) {
@@ -178,7 +207,7 @@ var app = {
               //       console.log(message);
               //     }
               // );
-              alert(e);
+              //alert(e);
               kakaoShare(JSONDATA.content,JSONDATA.back,JSONDATA.no);
             }else{
               //kakaoShare();

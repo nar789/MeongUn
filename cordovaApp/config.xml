@@ -34,5 +34,6 @@
     <plugin name="cordova-plugin-urlhandler" spec="~0.7.0">
         <variable name="URL_SCHEME" value="meongun" />
     </plugin>
-    <plugin name="cordova-plugin-admobpro" spec="~2.29.0" />
+    <plugin name="cordova-plugin-admob-free" spec="~0.9.0" />
+    <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
 </widget>

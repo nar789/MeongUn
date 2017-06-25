@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "866773536309",
-    "firebase_url": "https://airy-passkey-168413.firebaseio.com",
-    "project_id": "airy-passkey-168413",
-    "storage_bucket": "airy-passkey-168413.appspot.com"
+    "project_number": "585852225313",
+    "firebase_url": "https://meongun-c479d.firebaseio.com",
+    "project_id": "meongun-c479d",
+    "storage_bucket": "meongun-c479d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:866773536309:android:0cba17c0c8c1c8ec",
+        "mobilesdk_app_id": "1:585852225313:android:0cba17c0c8c1c8ec",
         "android_client_info": {
           "package_name": "com.hume.meongun"
         }
       },
       "oauth_client": [
         {
-          "client_id": "866773536309-3ei0t6kch2qchdnplqaruv174aco974a.apps.googleusercontent.com",
+          "client_id": "585852225313-r875vfk0sjqbqkscfb8iedulsvp6ekge.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAKTjspwUbOq0QqV0RPlrUjHWYaTtjApnE"
+          "current_key": "AIzaSyAh7NxXhD6E8CiGeWIxAK-prKf6b0HEP9g"
         }
       ],
       "services": {
