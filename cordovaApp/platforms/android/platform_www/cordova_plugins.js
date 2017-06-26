@@ -25,14 +25,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
         "id": "com.borismus.webintent.WebIntent",
         "file": "plugins/com.borismus.webintent/www/webintent.js",
         "pluginId": "com.borismus.webintent",
@@ -134,7 +126,6 @@ module.exports.metadata =
     "cordova-plugin-alertdialog": "1.0.1",
     "cordova-plugin-simple-toast": "1.0.0",
     "cordova-plugin-sqlite-2": "1.0.4",
-    "cordova-plugin-splashscreen": "4.0.3",
     "com.borismus.webintent": "1.0.0",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-statusbar": "2.2.3",

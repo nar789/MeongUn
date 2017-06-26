@@ -23,5 +23,5 @@
   function backgroundGenerator($img_src){
     return $img_src;
   }
-  echo '{"time":"'.timeGenerator($content[1]).'","content":"'.contentGenerator($content[3]).'","background":"'.backgroundGenerator($content[2]).'"}';
+  echo '{"time":"'.timeGenerator($content[1]).'","content":"'.urldecode(contentGenerator($content[3])).'","background":"'.backgroundGenerator($content[2]).'"}';
 ?>

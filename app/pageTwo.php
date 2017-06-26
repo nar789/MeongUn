@@ -35,7 +35,7 @@
 
       }
       #item{
-        border-radius:10px;
+        border-radius: 10px 10px 0px 0px;
         width:46%;
         height:200px;
         background-color:white;
@@ -44,9 +44,12 @@
         margin:1%;
       }
       #content_image{
-        width:100%;
-        height:130px;
-        border-radius:10px;
+        width: 105.2%;
+        height: 130px;
+        border-radius: 10px 10px 0px 0px;
+        position: relative;
+        right: 2.6%;
+        bottom: 5px;
       }
       #content_title{
         width:104%;
@@ -56,7 +59,7 @@
       }
       #content_detail{
         width:104%;
-        height:39px;
+        height: 37px;
         background-color:#fbfbfb;
         border-radius:0px 0px 10px 10px;
         margin-left:-2%;
@@ -80,11 +83,10 @@
         right:2px;
       }
       #content_title_detail{
-        position:relative;
-        top:5px;
-        float:left;
-        margin-left:10px;
-        margin-top:4px;
+        position: relative;
+        top: 10px;
+        color: #696969;
+        font-size: 12px;
       }
       #content_title_profile{
         width:24px;
@@ -101,10 +103,11 @@
       #sample_text{
         display: inline-block;
         position: relative;
-        bottom: 150px;
-        background-color: rgba(0,0,0,0.7);
+        bottom: 158px;
+        background-color: rgba(0,0,0,0.5);
         color: white;
-        padding: 3px;
+        padding: 7px;
+        border-radius: 15px;
       }
       #like_text{
         color:#a9a9a9;

@@ -8,7 +8,8 @@
     background-color: #1b1e24;
     text-decoration: none;">관리자 계정 이동</a>
   <div style="margin-top: 50px;">
-    <form name="upload-form" action="uploadContent.php" method="post" enctype="multipart/form-data">
+    <h1>JPG,JPEG 확장자 파일만 가능 이미지 용량 3M이하 권장</h1>
+    <form id=upload_form name="upload-form" action="uploadContent.php" method="post" enctype="multipart/form-data">
       <input type="hidden" name="MAX_FILE_SIZE" value="25242880"/>
       <input type="file" name="upload" id="upload"/></br>
       <label>게시판</label>
@@ -19,9 +20,7 @@
       <label>제목</label>
       <input id=title type="text" name="title" placeholder="제목을 입력해주세요." style="font-size:20px;width:300px;"></input>
       </br><label>내용</label>
-      <textarea id=content name="content" style="width:300px;height:500px;">
-
-      </textarea></br>
+      <textarea id=content name="content" style="width:300px;height:500px;"></textarea></br>
       <input type=submit value="이미지업로드" style="width:350px;height:50px;">
     </form>
   </div>

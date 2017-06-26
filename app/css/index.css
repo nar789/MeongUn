@@ -5,6 +5,7 @@
   text-shadow:none;
   text-decoration:none;
 }
+
 #header{
   background-color:#020607;
   height:70px;
@@ -39,7 +40,7 @@
 }
 #modalContent{
   margin:auto;
-  background-color:rgba(255,255,255,1);
+  background-color:rgba(0,0,0,1);
   width:70%;
   height:240px;
   border-radius:10px;
@@ -48,6 +49,7 @@
   height:30%;
 }
 iframe{
+  background-color: #e9e9e9;
   position:absolute;
   width:100%;
   height:100%;
@@ -138,4 +140,48 @@ iframe{
 #signUpIframe{
   position:initial;
   width:101%;
+}
+#modal3{
+  display:none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0px;
+  top:0px;
+  background-color:rgba(0,0,0,0.8);
+  z-index:50;
+}
+#modal3TM{
+  width:100%;
+  height:15%;
+}
+#modal3Ct{
+  width:70%;
+  height:50px;
+  background-color:black;
+}
+#modal4{
+  display:none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0px;
+  top:0px;
+  background-color:rgba(0,0,0,0.8);
+  z-index:50;
+}
+#modal4TM{
+  width:100%;
+  height:20%;
+}
+#modal4Ct{
+  width:70%;
+  height:50px;
+  background-color:black;
+}
+
+#whitebox{
+  width:100%;
+  height:100%;
+  background-color: black;
 }

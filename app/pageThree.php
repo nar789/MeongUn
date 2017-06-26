@@ -51,7 +51,7 @@
 
       }
       #item{
-        border-radius:10px;
+        border-radius: 10px 10px 0px 0px;
         width:46%;
         height:200px;
         background-color:white;
@@ -60,9 +60,12 @@
         margin:1%;
       }
       #content_image{
-        width:100%;
+        width: 105%;
         height: 165px;
-        border-radius:10px;
+        border-radius: 10px 10px 0px 0px;
+        position: relative;
+        right: 2.5%;
+        bottom: 5px;
       }
       #content_title{
         width:104%;
@@ -72,7 +75,7 @@
       }
       #content_detail{
         width:104%;
-        height:39px;
+        height: 37px;
         background-color:#fbfbfb;
         border-radius:0px 0px 10px 10px;
         margin-left:-2%;
@@ -117,13 +120,11 @@
       #sample_text{
         display: inline-block;
         position: relative;
-        bottom: 65px;
+        bottom: 140px;
         background-color: rgba(0,0,0,0.5);
-        color: rgba(255,255,255,0.8);
-        padding: 5px 0px 5px 0px;
-        width: 100%;
-        height: 16px;
-        font-size: 12px;
+        color: white;
+        padding: 7px;
+        border-radius: 15px;
       }
       #like_text{
         color:#a9a9a9;

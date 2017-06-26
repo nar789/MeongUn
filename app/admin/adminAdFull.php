@@ -10,7 +10,8 @@
     }
   </style>
 <body>
-  <button onclick="createBanner()">새 광고 생성</button>
+  <button onclick="createBanner()">새 광고 생성</button></br>
+  <input id=odd><button onclick="updateOdd()">전체 광고 확률</button>
   <?php
     include("AdQuery/selectCountAdFull.php");
     $bannerList=selectBannerCount();
@@ -48,6 +49,16 @@
   function updateOdd(no){
     $.get("./AdQuery/updateOddFull.php",{odd:document.getElementById('odd'+no).value,no:no}).done(function(){
       location.reload();
+    });
+  }
+  function updateOdd(){
+    $.get("./AdQuery/updateAdOdd.php",{odd:document.getElementById('odd').value}).done(function(){
+      location.reload();
+    });
+  }
+  window.onload=function(){
+    $.get("./AdQuery/selectOdd.php",{}).done(function(result){
+      document.getElementById('odd').value=result;
     });
   }
 </script>

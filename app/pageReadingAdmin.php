@@ -73,7 +73,7 @@
       }
       #shareModal{
         display:none;
-        position:absolute;
+        position:fixed;
         width:100%;
         height:100%;
         background-color:rgba(0,0,0,0.5);
@@ -113,6 +113,7 @@
         font-size: 15px;
       }
     </style>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
       var contentNumber;
       var userId;
@@ -139,7 +140,6 @@
       function insertComment(){
         var json='{"title":"comment","comment":"'+document.getElementById('input_comment').value+'","no":"'+contentNumber+'"}';
         window.parent.postMessage(json,"*");
-        updateComments(contentNumber,admin);
       }
       function deleteContents(){
         var json='{"title":"deleteContent","no":"'+contentNumber+'"}';
@@ -166,6 +166,15 @@
 
         if("UPDATECOMMENT"==e.data){
           updateComments(contentNumber,admin);
+          sendToast('성공적으로 등록하였습니다.');
+        }else if("BACK"==e.data){
+          if(document.getElementById('shareModal').style.display=="block"){
+            document.getElementById('shareModal').style.display="none";
+          }else{
+            window.parent.postMessage("READINGBACK","*");
+          }
+        }else if(e.data.indexOf("&xd_action")!=-1){
+
         }else{
           var oj=JSON.parse(e.data);
           contentNumber=oj.no;
@@ -185,15 +194,16 @@
           }
           userId=oj.userId;
           $.get("contentDetail.php",{no:oj.no}).done(function(result){
-            alert(result);
+            //alert(result);
             var j=JSON.parse(result);
-
+            document.getElementById('mainImage').src='';
             //document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
             document.getElementById('content_text').value=decodeURI(j.content);
             content=decodeURI(j.content);
             document.getElementById('mainImage').src=j.background;
             background=j.background;
+            document.getElementById('shareImage').src=background;
           });
           $.get("utills/BannerAdModule.php",{flag:1}).done(function(result){
             document.getElementById('ad').innerHTML=result;
@@ -201,6 +211,10 @@
           updateComments(contentNumber,oj.admin);
         }
 
+      }
+      function move_url(url){
+        var json='{"title":"ad","ad":"'+url+'"}';
+        window.parent.postMessage(json,"*");
       }
       function shareTalk(){
         var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
@@ -220,6 +234,10 @@
       }
       function getAd(){
         document.getElementById('ad').innerHTML;
+      }
+      function sendToast(str){
+        var json='{"title":"toast","toast":"'+str+'"}';
+        window.parent.postMessage(json,"*");
       }
     </script>
   </head>
@@ -246,7 +264,7 @@
       </center>
     </div>
     <div id=icon_box>
-      <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
+      <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
       <div id=space>긍정의 하루</div>
       <!-- <div id=post_date></div> -->
@@ -281,10 +299,10 @@
     <!--  -->
     <div class=utilVar>
       <div class=fifty>
-        <center><div id=like onclick="click_like_button()">좋아요</div></center>
+        <center><div id=like onclick="sendToast('좋아요!');click_like_button()">좋아요</div></center>
       </div>
       <div class=fifty>
-        <center><div id=share onclick="click_share_button()">공유하기</div></center>
+        <center><div id=share onclick="$(window).scrollTop(0);click_share_button()">공유하기</div></center>
       </div>
     </div>
     <script>

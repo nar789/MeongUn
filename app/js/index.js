@@ -1,5 +1,8 @@
+
 var admin=0;
 var isnowad=0;
+
+
 function sendMsg(target){
   if(target=="pencil"){
     // var json='{"title":"data","data":"pencil"}';
@@ -11,12 +14,33 @@ function sendMsg(target){
     window.parent.postMessage(json,"*");
   }
 }
+
 function returnCurrentWindow(){
   var json='{"title":"category","category":"'+window.location.href+'"}';
   document.getElementById('pageWritingIframe').contentWindow.postMessage(json,'*');
 }
 
+function loadPage(){
+  document.getElementById('pageWritingIframe').src="pageWriting.php";
+  document.getElementById('pageReadingIframe').src="pageReading.php";
+  document.getElementById('pageRAdminIframe').src="pageReadingAdmin.php";
+  document.getElementById('pageSampleImageIframe').src="pageSamplePictureList.php";
+  document.getElementById('pageAd').src="pageAdFull.php";
+}
+var post_page='';
+
 window.onload=function(){
+  setTimeout(function(){window.parent.postMessage("TOKEN","*");},5000);
+  $.get("utills/FullAdModule.php",{flag:1}).done((result)=>{
+    document.getElementById('modal_ad').innerHTML=result;
+  });
+  loadPage();
+  $.get("utills/isFirstUser.php",{email:document.getElementById('userId').value}).done((result)=>{
+    if(result=="FIRST"){
+      document.getElementById('modal3').style.display="block";
+    }
+
+  });
   var id=document.getElementById('userId').value;
   if(id==""){
     //alert("웹");
@@ -27,25 +51,6 @@ window.onload=function(){
     });
   }
 
-  $(window).on("navigate", function (event, data) {
-    var direction = data.state.direction;
-    if (direction == 'back') {
-      if(window.location.href.indexOf("#pageReading")!=-1||window.location.href.indexOf("#pageWriting")!=-1){
-        var json='exitApp';
-        window.parent.postMessage(json,"*");
-      }else{
-        if(isnowad==1){
-          isnowad=0;
-        }else{
-          isnowad=1;
-          document.getElementById('pageAd').contentWindow.postMessage("RESET",'*');
-          window.location.href="#pageAdFull";
-        }
-      }
-    }
-    if (direction == 'forward') {
-    }
-  });
   if(document.getElementById('isadmin').value=='admin'){
     admin=1;
   }
@@ -53,39 +58,75 @@ window.onload=function(){
     document.getElementById('modal_line_list').innerHTML=data;
   });
 }
+
 function reloadAllData(){
   document.getElementById('pageOneIframe').contentWindow.postMessage("RELOAD",'*');
   document.getElementById('pageTwoIframe').contentWindow.postMessage("RELOAD",'*');
   document.getElementById('pageThreeIframe').contentWindow.postMessage("RELOAD",'*');
 }
+function exit_app(){
+  var json='exitApp';
+  window.parent.postMessage(json,"*");
+}
+var isnowmodal=0;
+
 window.onmessage=function(e){
-  if(e.data=="BACK"){
-    window.location.href="#page1";
-    if(isnowad==1){
-      isnowad=0;
-    }else{
-      isnowad=1;
-      document.getElementById('pageAd').contentWindow.postMessage("RESET",'*');
-      window.location.href="#pageAdFull";
+  if(e.data=="back"){
+    var now_url=window.location.href;
+    var back_url;
+    if(now_url.indexOf("#pageReadingAdmin")!=-1){
+      document.getElementById('pageRAdminIframe').contentWindow.postMessage("BACK",'*');
+    }else if(now_url.indexOf("#pageReading")!=-1){
+      document.getElementById('pageReadingIframe').contentWindow.postMessage("BACK",'*');
+    }else if(now_url.indexOf("#pageWriting")!=-1){
+      $.get("./admin/AdQuery/selectOdd.php",{}).done(function(result){
+        var random_num=Math.floor((Math.random()*100)+0);
+        if(random_num>result){
+          window.location.href="#page1";
+        }else{
+          window.location.href="#pageAdFull";
+        }
+      });
+    }else if(now_url.indexOf("#page1")!=-1||now_url.indexOf("#")==-1){
+      isnowmodal=1;
+      document.getElementById('modal4').style.display="block";
+    }else if(now_url.indexOf("#page2")!=-1||now_url.indexOf("#page3")!=-1||now_url.indexOf("#page4")!=-1){
+      isnowmodal=1;
+      document.getElementById('modal4').style.display="block";
+    }else if(now_url.indexOf("#pageAdFull")!=-1){
+      window.location.href="#page1";
+    }else if(now_url.indexOf("#pageSampleImage")!=-1){
+      window.location.href="#pageWriting";
+    }else if(isnowmodal==1){
+      document.getElementById('modal4').style.display="none";
     }
+  }else if(e.data=="LOAD"){
+
   }else if(e.data=="BACK_WRITING"){
     window.history.back();
   }else if(e.data=="PICTURE"){
     window.location.href="#pageSampleImage";
   }else if(e.data=="WRITING"){
     window.location.href="#pageWriting";
-  }else if(e.data=="CAMERA"){
-  //alert("camear");
+  }else if(e.data=="READINGBACK"){
+    $.get("./admin/AdQuery/selectOdd.php",{}).done(function(result){
+      var random_num=Math.floor((Math.random()*100)+0);
+      if(random_num>result){
+        window.location.href="#page1";
+      }else{
+        window.location.href="#pageAdFull";
+      }
+    });
   }else if(e.data=="AD"){
-    isnowad=1;
-    alert("AD");
-    window.location.href="#pageAdFull";
+
   }else if(e.data=="HISTORY"){
     window.history.back();
   }else if(e.data=="COMMENT_INPUT"){
       // var readIframe=document.getElementById('pageReadingIframe');
       // readIframe.scrollTop=readIframe.scrollHeight;
     // alert(readIframe.scrollTop);
+  }else if(e.data.indexOf("&xd_action")!=-1){
+
   }else{
     var j=JSON.parse(e.data);
     if(j.title=="login"){
@@ -109,7 +150,7 @@ window.onmessage=function(e){
     }else if(j.title=="writing"){
       $.post("mysql/insertContent.php",{img_src:j.image,content:j.content,author:document.getElementById('userId').value,category:j.category})
       .done(function(data){
-        alert("Data Loaded:"+data);
+        //alert("Data Loaded:"+data);
         if(document.getElementById('isadmin').value=='admin'){location.reload();}
         reloadAllData();
 
@@ -136,7 +177,9 @@ window.onmessage=function(e){
     }else if(j.title=="comment"){
       var userId=document.getElementById('userId').value;
       $.post("mysql/insertComment.php",{comment:j.comment,no:j.no,author:userId}).done(function(data){
-        // alert("Data Loaded:"+data);
+        // alert("Data Loaded:"+data);UPDATECOMMENT
+        document.getElementById('pageReadingIframe').contentWindow.postMessage("UPDATECOMMENT",'*');
+        document.getElementById('pageRAdminIframe').contentWindow.postMessage("UPDATECOMMENT",'*');
       });
       document.getElementById('pageReadingIframe').contentWindow.postMessage("UPDATECOMMENT",'*');
     }else if(j.title=="deleteContent"){
@@ -155,8 +198,8 @@ window.onmessage=function(e){
         // window.parent.postMessage(json,"*");
       });
     }else if(j.title=="toast"){
-      // var json='{"title":"toast","toast":"'+j.toast+'"}';
-      // window.parent.postMessage(json,"*");
+      var json='{"title":"toast","toast":"'+j.toast+'"}';
+      window.parent.postMessage(json,"*");
     }else if(j.title=="ad"){
       var json='{"title":"ad","ad":"'+j.ad+'"}';
       window.parent.postMessage(json,"*");
@@ -166,7 +209,6 @@ window.onmessage=function(e){
       window.history.back();
     }else if(j.title=="share"){
       var json='{"title":"share","content":"'+j.content+'","back":"'+j.back+'","no":"'+j.no+'"}';
-      alert(json);
       window.parent.postMessage(json,"*");
       //alert(j.content+j.back+j.no);
     }

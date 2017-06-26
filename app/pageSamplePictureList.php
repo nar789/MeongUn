@@ -29,10 +29,10 @@
       border-radius:5px;
     }
     .image{
-      width:96%;
-      height: 97%;
-      padding:2%;
-      border-radius:5px;
+      width: 100%;
+      height: 100%;
+      padding: 0%;
+      border-radius: 5px;
     }
     .icon{
       position:relative;
@@ -44,6 +44,10 @@
     function sendMsg(msg){
       if(msg=="BACK_WRITING"){
         window.parent.postMessage(msg,"*");
+      }else if(msg=="back"){
+        window.parent.postMessage(msg,"*");
+      }else if(e.data.indexOf("&xd_action")!=-1){
+
       }else{
         var json_data='{"title":"image_src","image_src":"'+msg+'"}';
         window.parent.postMessage(json_data,"*");
@@ -53,7 +57,7 @@
 </head>
 <body>
   <div id=header>
-    <img class=icon onclick="sendMsg('BACK_WRITING')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
+    <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
   </div>
   <div id=header_margin></div>
   <div id=content>

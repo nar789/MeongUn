@@ -12,6 +12,7 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <!-- Custom File Uploader  -->
   <center>
+		<h1>JPG,JPEG 확장자 파일만 가능 이미지 용량 3M이하 권장</h1>
     <img class=img id=img1 align=middle>
     <form name="upload-form" action="upload.php" method="post" enctype="multipart/form-data">
       <input type="hidden" name="MAX_FILE_SIZE" value="25242880"/>

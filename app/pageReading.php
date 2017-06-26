@@ -37,11 +37,11 @@
         display:none;
       }
       .utilVar{
-        position:fixed;
-        bottom:0px;
-        left:0px;
-        height:70px;
-        width:100%;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        height: 50px;
+        width: 100%;
       }
       .fifty{
         height:100%;
@@ -50,10 +50,9 @@
         background-color:black;
       }
       #like{
-        color:white;
+        color: white;
         width: 60%;
-        margin-top: 13px;
-        border: 1px solid white;
+        margin-top: 7px;
         border-radius: 10px;
         padding: 11px;
       }
@@ -62,10 +61,9 @@
         background-color:white;
       }
       #share{
-        color:white;
+        color: white;
         width: 60%;
-        margin-top: 13px;
-        border: 1px solid white;
+        margin-top: 7px;
         border-radius: 10px;
         padding: 11px;
       }
@@ -75,7 +73,7 @@
       }
       #shareModal{
         display:none;
-        position:absolute;
+        position:fixed;
         width:100%;
         height:100%;
         background-color:rgba(0,0,0,0.5);
@@ -117,6 +115,9 @@
     </style>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
+      var adison=0;
+
+
       var contentNumber;
       var userId;
       var admin=0;
@@ -142,7 +143,6 @@
       function insertComment(){
         var json='{"title":"comment","comment":"'+document.getElementById('input_comment').value+'","no":"'+contentNumber+'"}';
         window.parent.postMessage(json,"*");
-        updateComments(contentNumber,admin);
       }
       function deleteContents(){
         var json='{"title":"deleteContent","no":"'+contentNumber+'"}';
@@ -168,6 +168,15 @@
       window.onmessage=function(e){
         if("UPDATECOMMENT"==e.data){
           updateComments(contentNumber,admin);
+          sendToast('성공적으로 등록하였습니다.');
+        }else if("BACK"==e.data){
+          if(document.getElementById('shareModal').style.display=="block"){
+            document.getElementById('shareModal').style.display="none";
+          }else{
+            window.parent.postMessage("READINGBACK","*");
+          }
+        }else if(e.data.indexOf("&xd_action")!=-1){
+
         }else{
           var oj=JSON.parse(e.data);
           contentNumber=oj.no;
@@ -186,19 +195,24 @@
           }
           userId=oj.userId;
           $.get("contentDetail.php",{no:oj.no}).done(function(result){
-            
+            document.body.style='';
             var j=JSON.parse(result);
             document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
             document.getElementById('content_text').value=decodeURI(j.content);
             content=decodeURI(j.content);
-            document.body.style="background:url("+j.background+") no-repeat center center fixed;background-size: cover;";
+            //document.body.style="background:url("+j.background+") no-repeat center center fixed;background-size: cover;";
+            document.getElementById('mainImage').src=j.background;
             background=j.background;
             document.getElementById("shareImage").src=background;
           });
           updateComments(contentNumber,oj.admin);
         }
 
+      }
+      function move_url(url){
+        var json='{"title":"ad","ad":"'+url+'"}';
+        window.parent.postMessage(json,"*");
       }
       function shareTalk(){
         var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
@@ -216,9 +230,14 @@
           href: 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+contentNumber,
         }, function(response){});
       }
+      function sendToast(str){
+        var json='{"title":"toast","toast":"'+str+'"}';
+        window.parent.postMessage(json,"*");
+      }
     </script>
   </head>
   <body>
+
     <div id=shareModal onclick="document.getElementById('shareModal').style.display='none'">
       <div id=shareModalTop></div>
       <center>
@@ -241,7 +260,7 @@
       </center>
     </div>
     <div id=icon_box>
-      <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
+      <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
       <div id=space></div>
       <div id=post_date></div>
@@ -273,13 +292,15 @@
     <!--  -->
     <div class=utilVar>
       <div class=fifty>
-        <center><div id=like onclick="click_like_button()">좋아요</div></center>
+        <center><div id=like onclick="sendToast('좋아요!');click_like_button()">좋아요</div></center>
       </div>
       <div class=fifty>
-        <center><div id=share onclick="click_share_button()">공유하기</div></center>
+        <center><div id=share onclick="$(window).scrollTop(0);click_share_button()">공유하기</div></center>
       </div>
     </div>
+
   </body>
+  <img id=mainImage>
   <script>
     window.fbAsyncInit = function() {
       FB.init({

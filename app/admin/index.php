@@ -26,6 +26,7 @@
 				<li><a href="#" class="icon-check" id="navItem4" onclick="frameInsert('adminRecommendApp.php')">인기핫</a></li>
 				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminAdBanner.php')">광고배너</a></li>
 				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminAdFull.php')">광고전면</a></li>
+				<li><a href="#" class="icon-check" id="navItem5" onclick="frameInsert('adminPush.php')">푸쉬알림</a></li>
 			</ul>
 			<div class="main">
 				<iframe id=main-frame></iframe>

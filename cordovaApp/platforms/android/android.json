@@ -17,10 +17,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"WebIntent\"><param name=\"android-package\" value=\"com.borismus.webintent.WebIntent\" /></feature>",
                             "count": 1
                         },
@@ -184,9 +180,6 @@
         "cordova-plugin-sqlite-2": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.hume.meongun"
-        },
         "com.borismus.webintent": {
             "PACKAGE_NAME": "com.hume.meongun"
         },
@@ -247,14 +240,6 @@
             "pluginId": "cordova-plugin-sqlite-2",
             "clobbers": [
                 "sqlitePlugin"
-            ]
-        },
-        {
-            "id": "cordova-plugin-splashscreen.SplashScreen",
-            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-            "pluginId": "cordova-plugin-splashscreen",
-            "clobbers": [
-                "navigator.splashscreen"
             ]
         },
         {
@@ -357,7 +342,6 @@
         "cordova-plugin-alertdialog": "1.0.1",
         "cordova-plugin-simple-toast": "1.0.0",
         "cordova-plugin-sqlite-2": "1.0.4",
-        "cordova-plugin-splashscreen": "4.0.3",
         "com.borismus.webintent": "1.0.0",
         "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-statusbar": "2.2.3",

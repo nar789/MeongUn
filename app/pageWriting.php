@@ -27,9 +27,9 @@
       }
       function saveData(){
         var content=encodeURI(document.getElementById('content_text').value);
-
+        document.getElementById('content_text').value='';
         let json_data='{"title":"writing","content":"'+content+'","image":"'+img+'","category":"'+target_board+'"}';
-        alert(json_data);
+        //alert(json_data);
         window.parent.postMessage(json_data,"*");
         window.history.back();
       }
@@ -37,13 +37,26 @@
         target_board=target;
         $("#modal2").fadeOut();
       }
+
+      var memh=0;
+      var once=true;
+      function body_resize(){
+        if(once==true){
+          memh=$(window).height();
+          once=false;
+        }
+        $("#mainImage").css('height',memh+'px');
+      }
+
       window.onmessage=function(e){
         if(e.data=="BACK_WRITING"){
           $("#modal").fadeOut();
+        }else if(e.data.indexOf("&xd_action")!=-1){
+
         }else{
           var j=JSON.parse(e.data);
           if(j.title=="image_src"){
-            document.body.style="background:url("+j.image_src+") no-repeat center center fixed;background-size: cover;";
+            document.getElementById('mainImage').style="background:url("+j.image_src+") no-repeat center center fixed;background-size: cover;";
             img=j.image_src;
             $("#modal").fadeOut();
           }else if(j.title="category"){
@@ -54,11 +67,17 @@
     </script>
     <style>
       body{
-        background:url(<?php echo $rand_image?>) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+        height:100%;
+        width:100%;
+        margin:0px;
+        padding:0px;
+      }
+      #mainImage{
+        margin:0px;
+        padding:0px;
+        background:url(<?php echo $rand_image?>) no-repeat center center;
+        width: 100%;
+        height: 100%;
       }
       #modal{
         display:block;
@@ -129,37 +148,45 @@
         background-color: rgba(0,0,0,0.6);
         padding: 10px;
         border-radius: 25px;
+        margin-top:5px;
         margin-left: 10px;
+      }
+      #icon_box{
+        margin:0px;
+        padding:0px;
       }
     </style>
   </head>
 
-  <body>
+  <body onresize='body_resize()'>
+    <div id=mainImage>
 
-    <div id=icon_box>
-      <img class=icon onclick="sendMsg('BACK')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
-      <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
-      <div id=icon_container>
-        <img class=icon onclick="openPicture('PICTURE')" id=camera src="images/iconmonstr-picture-6-48.png">
+      <div id=icon_box>
+        <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
+        <div id=icon_container>
+          <img class=icon onclick="openPicture('PICTURE')" id=camera src="images/iconmonstr-picture-6-48.png">
+        </div>
+        <div id=space></div>
+        <div class=icon onclick="saveData()" id=icon_save>글 저장하기</div>
       </div>
-      <div id=space></div>
-      <div class=icon onclick="saveData()" id=icon_save>글 저장하기</div>
-    </div>
-    <center>
-      <div id=content>
-        <textarea id=content_text placeholder="나의 명언을 남겨주세요!!"></textarea>
-      </div>
-    </center>
-    <div id=modal2 style="display:none" onclick="document.getElementById('modal2').style.display='none';">
-      <div id=topMargin2></div>
+      <br>
       <center>
-        <div id=modalContent2>
-          <div id=line onclick="changeBoard(1)"><font id=line_item>명언속으로</font></div>
-          <div id=line class=line_center onclick="changeBoard(2)"><font id=line_item >명언만들기</font></div>
-          <div id=line onclick="changeBoard(3)"><font id=line_item>짧은명언</font></div>
+        <div id=content>
+          <textarea id=content_text placeholder="나의 명언을 남겨주세요!!"></textarea>
         </div>
       </center>
+      <div id=modal2 style="display:none" onclick="document.getElementById('modal2').style.display='none';">
+        <div id=topMargin2></div>
+        <center>
+          <div id=modalContent2>
+            <div id=line onclick="changeBoard(1)"><font id=line_item>명언속으로</font></div>
+            <div id=line class=line_center onclick="changeBoard(2)"><font id=line_item >명언만들기</font></div>
+            <div id=line onclick="changeBoard(3)"><font id=line_item>짧은명언</font></div>
+          </div>
+        </center>
+      </div>
     </div>
+
   </body>
   <!-- <div id=modal style="display:none">
     <div id=topMargin></div>
