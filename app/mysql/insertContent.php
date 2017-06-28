@@ -3,7 +3,7 @@
 
   $today=date("Y-m-d H:i:s");
   $img_src=$_POST['img_src'];
-  $content=$_POST['content'];
+  $content=urlencode($_POST['content']);
   $author=$_POST['author'];
   $category=$_POST['category'];
   $query="INSERT INTO MeongUnContents(no,date,img_src,content,like_counter,comment_counter,author,category,title)

@@ -53,17 +53,16 @@
 
 	include("./AdQuery/dbconnect.php");
 	$today=date("Y-m-d H:i:s");
-  $content=urlencode($_POST['content']);
+  $content=trim(urlencode(str_replace("\\n","<br>",$_POST['content'])));
 	$author=urlencode("관리자");
 	$category=$_POST['category'];
 	$img_src="sample_images/".$upload_filename;
 	$title=$_POST['title'];
-
 	$query="INSERT INTO MeongUnContents(no,date,img_src,content,like_counter,comment_counter,author,category,title)
   VALUES(NULL,'$today','$img_src','$content',0,0,'$author','$category','$title')";
 	mysqli_query($con,$query);
 	$ret=mysqli_query($conn,$query);
 	include("../utills/image_resize.php");
 	imagejpeg(resizeImage($path.$upload_filename,250,250),$path."thumb-".$upload_filename);
-	echo "<script>location.href=\"adminContents.php\"</script>";
+	echo "<script>location.href=\"adminContents.php?content=$content\"</script>";
 ?>

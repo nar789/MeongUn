@@ -44,7 +44,7 @@
               </center>
             </div>
           </div>
-          <div id=sample_text><div style=\"font-family: 'Nanum Pen Script', serif;\">".mb_substr(urldecode($v[3]),0,6)."</div></div>
+          <div id=sample_text><div style=\"font-family: 'Nanum Pen Script', serif;\">".mb_substr(urldecode(urldecode($v[3])),0,6)."</div></div>
         </div>";
       }
 

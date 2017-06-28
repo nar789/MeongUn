@@ -3,6 +3,9 @@
   $token=$_POST['token'];
   $phone=$_POST['phone'];
 
+  if($token=="")return;
+  if($phone=="")return;
+
   $update_check=0;
 
   echo $query="SELECT * FROM MeongUnAppToken WHERE phone='$phone'";

@@ -180,6 +180,9 @@
       }
       var memh=0;
       var once=true;
+      window.onload=()=>{
+        window.parent.postMessage("LOAD","*");
+      }
       function body_resize(){
         if(once==true){
           memh=$(window).height();

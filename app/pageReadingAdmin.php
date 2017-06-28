@@ -65,6 +65,12 @@
         padding: 11px;
         font-size: 14px;
       }
+      #content_text{
+        text-align:left;
+        margin: 0px 10px 5px 10px;
+padding-top: 5px;
+padding-bottom: 5px;
+      }
       #shareModal{
         display:none;
         position:fixed;
@@ -173,6 +179,7 @@
         }else if(e.data.indexOf("&xd_action")!=-1){
 
         }else{
+          //alert(e.data);
           var oj=JSON.parse(e.data);
           contentNumber=oj.no;
 
@@ -196,7 +203,7 @@
             document.getElementById('mainImage').src='';
             //document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
-            document.getElementById('content_text').value=decodeURI(j.content);
+            document.getElementById('content_text').innerHTML=j.content;
             content=decodeURI(j.content);
             document.getElementById('mainImage').src=j.background;
             background=j.background;
@@ -274,7 +281,7 @@
     <center>
       <div id=content>
 
-        <textarea id=content_text></textarea>
+        <div id=content_text></div>
         <div id=ad></div>
         <div id=comment_list>
         </div>
