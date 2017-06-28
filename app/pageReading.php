@@ -20,21 +20,25 @@
         float:right;
         border-radius:21px;
         padding:5px;
-        background-color:rgba(0,0,0,0.6);
-        width:18px;
+        width:auto;
+        color:white;
         height:18px;
         margin-right:20px;
         display:none;
+        position: relative;
+        bottom: 5px;
       }
       #upload{
         float:right;
         border-radius:21px;
         padding:5px;
-        background-color:rgba(0,0,0,0.6);
-        width:18px;
+        width:auto;
+        color:white;
         height:18px;
         margin-right:20px;
         display:none;
+        position: relative;
+        bottom: 5px;
       }
       .utilVar{
         position: fixed;
@@ -42,6 +46,7 @@
         left: 0px;
         height: 50px;
         width: 100%;
+        z-index:20;
       }
       .fifty{
         height:100%;
@@ -55,10 +60,7 @@
         margin-top: 7px;
         border-radius: 10px;
         padding: 11px;
-      }
-      #like:hover{
-        color:black;
-        background-color:white;
+        font-size: 14px;
       }
       #share{
         color: white;
@@ -66,10 +68,7 @@
         margin-top: 7px;
         border-radius: 10px;
         padding: 11px;
-      }
-      #share:hover{
-        color:black;
-        background-color:white;
+        font-size: 14px;
       }
       #shareModal{
         display:none;
@@ -112,6 +111,16 @@
         top: 10px;
         font-size: 15px;
       }
+      #mainImage{
+        width:100%;
+        height:100%;
+        position:fixed;
+        top:0px;
+      }
+      #content{
+        position:relative;
+        z-index:10;
+      }
     </style>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
@@ -128,13 +137,15 @@
       }
       function click_like_button(){
         $.get("mysql/updateContentLikeCounter.php",{no:contentNumber}).done(function(result){
-          var json='{"title":"toast","toast":"'+'좋아요!'+'"}';
-          window.parent.postMessage(json,"*");
+          window.parent.postMessage("RELOAD","*");
+          window.parent.postMessage("back","*");
         });
       }
       function updateComments(no,admin){
         $.get("commentsListGenerator.php",{target_no:no,author:userId,admin:admin}).done(function(result){
+          //alert("updateComment"+userId);
           document.getElementById('comment_list').innerHTML=result;
+          document.getElementById('input_comment').value="";
         });
       }
       function sendMsg(msg){
@@ -155,20 +166,30 @@
         window.history.back();
       }
       function deleteComment(no){
+        $.get("mysql/updateContentLikeCounter.php",{no:no,flag:1}).done(function(result){
+          window.parent.postMessage("RELOAD","*");
+        });
         $.get("mysql/deleteComment.php",{no:no}).done(function(result){
           updateComments(contentNumber,admin);
-          var json='{"title":"toast","toast":"'+'댓글이 삭제되었습니다.'+'"}';
-          window.parent.postMessage(json,"*");
+          window.parent.postMessage("RELOAD","*");
         });
       }
       function click_share_button(){
         //alert(content+background+contentNumber);
         document.getElementById('shareModal').style.display="block";
       }
+      var memh=0;
+      var once=true;
+      function body_resize(){
+        if(once==true){
+          memh=$(window).height();
+          once=false;
+        }
+        $("#mainImage").css('height',memh+'px');
+      }
       window.onmessage=function(e){
         if("UPDATECOMMENT"==e.data){
           updateComments(contentNumber,admin);
-          sendToast('성공적으로 등록하였습니다.');
         }else if("BACK"==e.data){
           if(document.getElementById('shareModal').style.display=="block"){
             document.getElementById('shareModal').style.display="none";
@@ -179,6 +200,7 @@
 
         }else{
           var oj=JSON.parse(e.data);
+          //alert(e.data);
           contentNumber=oj.no;
           if(oj.author=="false"){
             document.getElementById('delete').style.display="none";
@@ -187,6 +209,7 @@
           }else if(oj.author=="true"){
             document.getElementById('delete').style.display="block";
             document.getElementById('upload').style.display="block";
+            document.getElementById('content_text').style.pointerEvents="auto";
           }
           if(oj.admin=='1'){
             document.getElementById('upload').style.display="block";
@@ -194,6 +217,7 @@
             admin=1;
           }
           userId=oj.userId;
+
           $.get("contentDetail.php",{no:oj.no}).done(function(result){
             document.body.style='';
             var j=JSON.parse(result);
@@ -207,6 +231,7 @@
             document.getElementById("shareImage").src=background;
           });
           updateComments(contentNumber,oj.admin);
+          window.parent.postMessage("EXITLOADING","*");
         }
 
       }
@@ -236,8 +261,8 @@
       }
     </script>
   </head>
-  <body>
-
+  <body onresize="body_resize();">
+    <img id=mainImage >
     <div id=shareModal onclick="document.getElementById('shareModal').style.display='none'">
       <div id=shareModalTop></div>
       <center>
@@ -264,8 +289,8 @@
       <!-- <div class=icon onclick="changeFont()" id=icon_font>가</div> -->
       <div id=space></div>
       <div id=post_date></div>
-      <img class=icon id=delete onclick="deleteContents()" src="images/iconmonstr-trash-can-9-64.png">
-      <img class=icon id=upload onclick="updateContents()" src="images/iconmonstr-upload-19-64.png">
+      <div class=icon id=delete onclick="updateContents()">수정</div>
+      <div class=icon id=upload onclick="deleteContents()">삭제</div>
     </div>
     <center>
       <div id=content>
@@ -292,7 +317,7 @@
     <!--  -->
     <div class=utilVar>
       <div class=fifty>
-        <center><div id=like onclick="sendToast('좋아요!');click_like_button()">좋아요</div></center>
+        <center><div id=like onclick="click_like_button()">좋아요</div></center>
       </div>
       <div class=fifty>
         <center><div id=share onclick="$(window).scrollTop(0);click_share_button()">공유하기</div></center>
@@ -300,7 +325,7 @@
     </div>
 
   </body>
-  <img id=mainImage>
+
   <script>
     window.fbAsyncInit = function() {
       FB.init({

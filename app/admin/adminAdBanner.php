@@ -1,9 +1,12 @@
 <html>
   <style>
+  *{
+    margin:10px;
+  }
     #content{
       border:1px solid black;
       margin:10px;
-      width:300px;
+      width:400px;
     }
     img{
       width:300px;

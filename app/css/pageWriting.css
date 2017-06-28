@@ -40,15 +40,13 @@ textarea{
 #icon_save{
   display: inline;
   color: white;
-  border: 1px solid;
-  width: 77px;
+  width: auto;
   position: fixed;
   padding-left: 3px;
   padding-right: 3px;
   height: 23.33px;
   top: 9px;
   right: 18px;
-  background-color: rgba(0,0,0,0.6);
   padding-top: 3px;
   padding-bottom: 3px;
 }

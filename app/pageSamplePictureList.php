@@ -46,12 +46,13 @@
         window.parent.postMessage(msg,"*");
       }else if(msg=="back"){
         window.parent.postMessage(msg,"*");
-      }else if(e.data.indexOf("&xd_action")!=-1){
-
       }else{
         var json_data='{"title":"image_src","image_src":"'+msg+'"}';
         window.parent.postMessage(json_data,"*");
       }
+    }
+    function contentload(){
+      window.parent.postMessage("LOAD","*");
     }
   </script>
 </head>
@@ -60,7 +61,7 @@
     <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
   </div>
   <div id=header_margin></div>
-  <div id=content>
+  <div id=content onload="contentload()">
     <?php include("sampleImageList.php");?>
     <!-- <div id=image_container><img id=image src="sample_images/thumb-pexels-photo-115045.jpeg"></div>
     <div id=image_container></div>

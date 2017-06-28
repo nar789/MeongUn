@@ -48,6 +48,9 @@
 #topMargin{
   height:30%;
 }
+#modal_ad{
+
+}
 iframe{
   background-color: #e9e9e9;
   position:absolute;
@@ -56,14 +59,16 @@ iframe{
   border:none;
 }
 .modal_line{
-  height:40px;
+      height: 40px;
   width:90%;
   margin-top:20px;
   margin: 10px;
   font-size: 14px;
+  position: relative;
+  top: 10px;
 }
 .modal_line_title{
-  height: 40px;
+  height: 23px;
   padding-top: 20px;
   background-color: black;
   color: white;
@@ -89,19 +94,18 @@ iframe{
 #header_content{
   height:30px;
 }
-#a_button{
+.a_button{
   color:#fcfcfd;
   text-decoration:none;
   padding:12px;
   font-size:13px;
+  border-color:#f26a41;
+  border-style:none;
+  border-width:0px 0px 3px 0px;
+  padding-left: 17.5px;
+  padding-right:17.5px;
 }
-#a_button:hover{
-  background-color:#343737;
-  border:1px solid #f26a41;
-  border-left:none;
-  border-right:none;
-  border-top:none;
-}
+
 #header_icon_right{
   margin:5px;
   position:fixed;
@@ -135,7 +139,7 @@ iframe{
   font-family: 'Nanum Brush Script', serif;
 }
 #meun{
-  color:#fc6014;
+  color:white;
 }
 #signUpIframe{
   position:initial;
@@ -148,7 +152,7 @@ iframe{
   height:100%;
   left:0px;
   top:0px;
-  background-color:rgba(0,0,0,0.8);
+      background-color: rgba(30,30,50,1.0);
   z-index:50;
 }
 #modal3TM{
@@ -158,7 +162,8 @@ iframe{
 #modal3Ct{
   width:70%;
   height:50px;
-  background-color:black;
+  background-color:#121212;
+      border-radius: 10px;
 }
 #modal4{
   display:none;
@@ -184,4 +189,24 @@ iframe{
   width:100%;
   height:100%;
   background-color: black;
+}
+#loading{
+  display:none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0px;
+  top:0px;
+  background-color: black;
+  z-index: 50;
+  opacity: 0.8;
+}
+#loadingTM{
+  width:100%;
+  height:20%;
+}
+#loadingCT{
+  width:70%;
+  height:50px;
+  background-color:black;
 }

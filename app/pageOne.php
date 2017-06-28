@@ -129,7 +129,7 @@
             page++;
           }else{
             var json='{"title":"toast","toast":"'+'추가할 데이터가 없습니다.'+'"}';
-            window.parent.postMessage(json,"*");
+            //window.parent.postMessage(json,"*");
           }
         });
       }
@@ -142,7 +142,7 @@
           page++;
           type="no";
           var json='{"title":"toast","toast":"'+'목록이 갱신 되었습니다.'+'"}';
-          window.parent.postMessage(json,"*");
+          //window.parent.postMessage(json,"*");
         });
       }
       document.addEventListener('scroll',function(event){
@@ -159,14 +159,10 @@
           document.getElementById('like_text').style.color="black";
           document.getElementById('recent_text').style.color="#a9a9a9";
           type="like_counter";
-          var json='{"title":"toast","toast":"'+'인기글'+'"}';
-          window.parent.postMessage(json,"*");
         }else if(target==2){
           document.getElementById('like_text').style.color="#a9a9a9";
           document.getElementById('recent_text').style.color="black";
           type="no";
-          var json='{"title":"toast","toast":"'+'최신글'+'"}';
-          window.parent.postMessage(json,"*");
         }
         reloadContentList();
       }

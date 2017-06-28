@@ -54,10 +54,7 @@
         border: 1px solid white;
         border-radius: 10px;
         padding: 11px;
-      }
-      #like:hover{
-        color:black;
-        background-color:white;
+        font-size: 14px;
       }
       #share{
         color:black;
@@ -66,10 +63,7 @@
         border: 1px solid white;
         border-radius: 10px;
         padding: 11px;
-      }
-      #share:hover{
-        color:black;
-        background-color:white;
+        font-size: 14px;
       }
       #shareModal{
         display:none;
@@ -125,13 +119,14 @@
       }
       function click_like_button(){
         $.get("mysql/updateContentLikeCounter.php",{no:contentNumber}).done(function(result){
-          var json='{"title":"toast","toast":"'+'좋아요!'+'"}';
-          window.parent.postMessage(json,"*");
+          window.parent.postMessage("RELOAD","*");
+          window.parent.postMessage("back","*");
         });
       }
       function updateComments(no,admin){
         $.get("commentsListGenerator.php",{target_no:no,author:userId,admin:admin}).done(function(result){
           document.getElementById('comment_list').innerHTML=result;
+          document.getElementById('input_comment').value='';
         });
       }
       function sendMsg(msg){
@@ -152,10 +147,12 @@
         window.history.back();
       }
       function deleteComment(no){
+        $.get("mysql/updateContentLikeCounter.php",{no:no,flag:1}).done(function(result){
+          window.parent.postMessage("RELOAD","*");
+        });
         $.get("mysql/deleteComment.php",{no:no}).done(function(result){
           updateComments(contentNumber,admin);
-          var json='{"title":"toast","toast":"'+'댓글이 삭제되었습니다.'+'"}';
-          window.parent.postMessage(json,"*");
+          window.parent.postMessage("RELOAD","*");
         });
       }
       function click_share_button(){
@@ -209,6 +206,8 @@
             document.getElementById('ad').innerHTML=result;
           });
           updateComments(contentNumber,oj.admin);
+
+          window.parent.postMessage("EXITLOADING","*");
         }
 
       }
@@ -299,7 +298,7 @@
     <!--  -->
     <div class=utilVar>
       <div class=fifty>
-        <center><div id=like onclick="sendToast('좋아요!');click_like_button()">좋아요</div></center>
+        <center><div id=like onclick="click_like_button()">좋아요</div></center>
       </div>
       <div class=fifty>
         <center><div id=share onclick="$(window).scrollTop(0);click_share_button()">공유하기</div></center>

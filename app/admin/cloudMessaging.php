@@ -45,5 +45,6 @@ if($result=mysqli_query($con,$query)){
     array_push($tokenList,$row[1]);
   }
 }
-  send_fcm($_GET['message'], $tokenList);
+print_r($tokenList);
+  echo send_fcm($_GET['message'], $tokenList);
 ?>

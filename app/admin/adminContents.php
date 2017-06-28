@@ -1,4 +1,9 @@
 <html>
+<style>
+*{
+  margin:10px;
+}
+</style>
 <body>
   <a href="#" onclick="window.open('http://total0808.cafe24.com/meong-un/app/?id=관리자@meongun.co.kr&admin=admin')" style="    color: white;
     outline: none;

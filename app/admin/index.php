@@ -18,7 +18,7 @@
 				<h1>관리자 페이지</h1>
 			</header> <!--End Header -->
 			<ul class="tl-menu">
-				<li><a href="#" class="icon-logo"></a></li>
+				<li style="    margin-top: 100px;"></li>
 				<li><a href="#" class="icon-check" id="navItem1" onclick="frameInsert('adminUser.php')">유저 관리</a></li>
 				<li><a href="#" class="icon-check" id="navItem2" onclick="frameInsert('adminContents.php')">게시글 관리</a></li>
 				<li><a href="#" class="icon-check" id="navItem3" onclick="frameInsert('adminAnounce.php')">공지사항</a></li>

@@ -42,6 +42,12 @@
       if(checkIsMyComment($v[0],$author)||$admin=='1'){
         $del="<font id=del onclick='deleteComment(\"".$v[0]."\")'>삭제하기</font>";
       }
+      $name="";
+      if(selectNameByEmail($v[2])[0]==""){
+        $name="　";
+      }else{
+        $name=selectNameByEmail($v[2])[0];
+      }
       echo "<div id=comment>
         <div id=comment_left>
           <center id=comment_profile_container>
@@ -50,7 +56,7 @@
         </div>
         <div id=comment_right>
           <div class=clear>
-            <div id=comment_name>".selectNameByEmail($v[2])[0]."<font id=comment_post_time>".timeGenerator($v[4])."</font>$del</div>
+            <div id=comment_name>".$name."<font id=comment_post_time>".timeGenerator($v[4])."</font>$del</div>
             <div id=comment_content>".$v[1]."</div>
           </div>
         </div>

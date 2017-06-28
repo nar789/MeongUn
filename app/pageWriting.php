@@ -167,12 +167,12 @@
           <img class=icon onclick="openPicture('PICTURE')" id=camera src="images/iconmonstr-picture-6-48.png">
         </div>
         <div id=space></div>
-        <div class=icon onclick="saveData()" id=icon_save>글 저장하기</div>
+        <div class=icon onclick="saveData()" id=icon_save>저장하기</div>
       </div>
       <br>
       <center>
         <div id=content>
-          <textarea id=content_text placeholder="나의 명언을 남겨주세요!!"></textarea>
+          <textarea id=content_text placeholder="나만의 명언을 남겨주세요."></textarea>
         </div>
       </center>
       <div id=modal2 style="display:none" onclick="document.getElementById('modal2').style.display='none';">

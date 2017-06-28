@@ -103,6 +103,26 @@ function requestReadPermission() {
           .transition({opacity:0})
           .transition({scale:0});
         },3000);
+        FCMPlugin.getToken(
+          function(token){
+            alert(token);
+            if(token!=""){
+              $.get("http://total0808.cafe24.com/meong-un/app/admin/tokenManagement.php",{
+                token:token,
+                phone:phoneNumber
+              }).done(function(result){
+                alert(result);
+              });
+            }else{
+              FCMPlugin.getToken(function(asd){
+                alert(asd);
+              });
+            }
+          },
+          function(err){
+            console.log('error retrieving token: ' + err);
+          }
+        );
       });
     },()=>{})
   },(r)=>{navigator.app.exitApp();});
@@ -131,7 +151,7 @@ var app = {
     onDeviceReady: function() {
       document.addEventListener('deviceready', function(){
           // Change the color
-          window.plugins.headerColor.tint("#000000");
+          window.plugins.headerColor.tint("#161616");
       }, false);
 
       FCMPlugin.onNotification(
@@ -164,7 +184,7 @@ var app = {
           navigator.app.exitApp();
         }else if(e.data=="camera"){
 
-        }else if(e.data=="back"){
+        }else if(e.data=="LOAD"){
 
         }else if(e.data=="home"){
 
@@ -177,8 +197,7 @@ var app = {
                 $.get("http://total0808.cafe24.com/meong-un/app/admin/tokenManagement.php",{
                   token:token,
                   phone:phoneNumber
-                }).done(function(){
-
+                }).done(function(result){
                 });
               }
             },

@@ -1,5 +1,8 @@
 <html>
   <style>
+  *{
+    margin:10px;
+  }
     #content{
       border:1px solid black;
       margin:10px;
