@@ -165,6 +165,9 @@ padding-bottom: 5px;
         //alert(content+background+contentNumber);
         document.getElementById('shareModal').style.display="block";
       }
+      window.onload=()=>{
+        window.parent.postMessage("LOAD","*");
+      }
       window.onmessage=function(e){
 
         if("UPDATECOMMENT"==e.data){

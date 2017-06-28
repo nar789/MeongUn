@@ -98,11 +98,7 @@ function requestReadPermission() {
           setLoginStatus(result.phoneNumber);
           document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
         }
-        setTimeout(()=>{
-          $('#splash').transition({ x: $(window).width() })
-          .transition({opacity:0})
-          .transition({scale:0});
-        },3000);
+
 
       });
     },()=>{})
@@ -123,6 +119,7 @@ function onBackKeyDown() {
 }
 var kakaoLoginStatus=0;
 var tokenValue;
+var load_count=0;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -153,7 +150,7 @@ var app = {
         }
       );
       dbinit();
-      admobShow();
+
       requestReadPermission();
 
       //Native Alert
@@ -166,7 +163,16 @@ var app = {
         }else if(e.data=="camera"){
 
         }else if(e.data=="LOAD"){
+          load_count=load_count+1;
+          if(load_count>=8){
+            admobShow();
+            setTimeout(()=>{
+              $('#splash').transition({ x: $(window).width() })
+              .transition({opacity:0})
+              .transition({scale:0});
+            },1000);
 
+          }
         }else if(e.data=="home"){
 
         }else if(e.data=="signBack"){

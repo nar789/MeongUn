@@ -51,7 +51,7 @@
         window.parent.postMessage(json_data,"*");
       }
     }
-    function contentload(){
+    window.onload=()=>{
       window.parent.postMessage("LOAD","*");
     }
   </script>
@@ -61,7 +61,7 @@
     <img class=icon onclick="sendMsg('back')" id=back width="24px" height="24px" src="images/iconmonstr-arrow-64-48.png">
   </div>
   <div id=header_margin></div>
-  <div id=content onload="contentload()">
+  <div id=content onload="">
     <?php include("sampleImageList.php");?>
     <!-- <div id=image_container><img id=image src="sample_images/thumb-pexels-photo-115045.jpeg"></div>
     <div id=image_container></div>

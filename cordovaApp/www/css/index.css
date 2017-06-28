@@ -27,3 +27,9 @@ iframe{
   height:100%;
   border:none;
 }
+#loading{
+  position:relative;
+  bottom:250px;
+  width:100px;
+  opacity:0.9;
+}

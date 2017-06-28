@@ -37,7 +37,9 @@
         target_board=target;
         $("#modal2").fadeOut();
       }
-
+      window.onload=()=>{
+        window.parent.postMessage("LOAD","*");
+      }
       var memh=0;
       var once=true;
       function body_resize(){
