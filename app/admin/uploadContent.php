@@ -53,6 +53,7 @@
 
 	include("./AdQuery/dbconnect.php");
 	$today=date("Y-m-d H:i:s");
+
   $content=trim(urlencode(str_replace("\\n","<br>",$_POST['content'])));
 	$author=urlencode("관리자");
 	$category=$_POST['category'];

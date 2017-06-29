@@ -26,7 +26,7 @@
       <input id=title type="text" name="title" placeholder="제목을 입력해주세요." style="font-size:20px;width:300px;"></input>
       </br><label>내용</label>
       <textarea id=content name="content" style="width:300px;height:500px;"></textarea></br>
-      <input type=submit value="이미지업로드" onclick="document.getElementById('content').value=document.getElementById('content').value.replace('\n','<br>');alert(document.getElementById('content').value)"style="width:350px;height:50px;">
+      <input type=submit value="이미지업로드" onclick="document.getElementById('content').value=document.getElementById('content').value.replace(/\n/gi,'<br>');alert(document.getElementById('content').value)"style="width:350px;height:50px;">
     </form>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
