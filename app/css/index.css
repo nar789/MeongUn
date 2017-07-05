@@ -59,13 +59,14 @@ iframe{
   border:none;
 }
 .modal_line{
-      height: 40px;
-  width:90%;
-  margin-top:20px;
+  height: auto;
+  width: 90%;
+  margin-top: 20px;
   margin: 10px;
   font-size: 14px;
   position: relative;
   top: 10px;
+  padding-bottom: 15px;
 }
 .modal_line_title{
   height: 23px;

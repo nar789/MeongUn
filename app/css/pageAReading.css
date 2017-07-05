@@ -46,6 +46,7 @@ textarea{
   width:100%;
   height:auto;
   box-shadow: 0px 0px 4px rgba(0,0,0, 0.5);
+  background-color: white;
 }
 #post_date{
   display:inline-block;
@@ -90,7 +91,7 @@ textarea{
   display:inline-block;
   width:100%;
   text-align:left;
-  color:black;
+  color:#363636;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
   font-size:10px;
 }
@@ -100,10 +101,11 @@ textarea{
   margin-left: 16px;
   position: relative;
   bottom: 2px;
+  color: #8b898a;
 }
 #comment_content{
   text-align:left;
-  color:black;
+  color: #8b898a;
   margin-top:4px;
   font-size:8px;
 }
@@ -144,26 +146,26 @@ textarea{
   border-color:rgba(254,86,33,0.8);
   border-style:solid;
   border-width:0px 0px 1px;
-  color:black;
+  color: #8b898a;
   margin-top:12px;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
   font-size:14px;
   outline: none;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: black;
+  color: #8b898a;
   font-size:14px;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: black;
+  color: #8b898a;
   font-size:14px;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: black;
+  color: #8b898a;
   font-size:14px;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: black;
+  color: #8b898a;
   font-size:14px;
 }
 #sendButton{

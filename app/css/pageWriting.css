@@ -12,6 +12,7 @@ textarea{
   padding:13px;
   text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
   outline:none;
+  text-align:center;
 }
 #icon_box{
 }

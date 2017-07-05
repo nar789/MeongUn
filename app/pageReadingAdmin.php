@@ -48,7 +48,7 @@
         background-color:white;
       }
       #like{
-        color:black;
+        color: #8b898a;
         width: 60%;
         margin-top: 3px;
         border: 1px solid white;
@@ -57,7 +57,7 @@
         font-size: 14px;
       }
       #share{
-        color:black;
+        color: #8b898a;
         width: 60%;
         margin-top: 3px;
         border: 1px solid white;
@@ -68,8 +68,10 @@
       #content_text{
         text-align:left;
         margin: 0px 10px 5px 10px;
-padding-top: 5px;
-padding-bottom: 5px;
+padding-top: 20px;
+padding-bottom: 10px;
+color: #8b898a;
+
       }
       #shareModal{
         display:none;

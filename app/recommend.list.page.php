@@ -48,7 +48,7 @@
   <body>
     <center>
       <div class=header>
-        긍정의 하루<font style="color:white;">과 함께하는 인기 핫한 앱들을 보고가세요!</font>
+        긍정의 하루<font style="color:white;">와 함께하는 인기 핫한 앱들을 보고가세요!</font>
       </div>
     </center>
     <center id=content>

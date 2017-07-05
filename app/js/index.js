@@ -47,7 +47,7 @@ window.onload=function(){
   document.getElementById('button1').style.borderStyle="solid";
   document.getElementById('button1').style.backgroundColor="#343737";
   setTimeout(function(){window.parent.postMessage("TOKEN","*");},5000);
-  $.get("utills/FullAdModule.php",{flag:1}).done((result)=>{
+  $.get("utills/ExitAdModule.php",{}).done((result)=>{
     document.getElementById('modal_ad').innerHTML=result;
   });
   loadPage();
@@ -82,6 +82,10 @@ function reloadAllData(){
 }
 function exit_app(){
   var json='exitApp';
+  window.parent.postMessage(json,"*");
+}
+function move_url(ad){
+  var json='{"title":"ad","ad":"'+ad+'"}';
   window.parent.postMessage(json,"*");
 }
 var isnowmodal=0;

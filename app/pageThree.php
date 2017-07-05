@@ -204,51 +204,6 @@
     </div>
     <div id=content>
       <center id=content_content>
-        <!-- <?php
-          // include("contentList.php");
-          // contentListGenerator(1);
-        ?> -->
-        <!-- <div id=item>
-          <img id=content_image src='sample_images/thumb-amazing-animal-beautiful-beautifull.jpg'>
-          <div id=content_title>
-            <font id=content_title_detail>즐겁게 하루를 만드는 법</font>
-          </div>
-          <div id=content_detail>
-            <div id=fifty>
-              <center>
-                <img id=like src='images/iconmonstr-facebook-like-1-64.png'>
-                <br><font id=like_detail>23</font>
-              </center>
-            </div>
-            <div id=fifty>
-              <center>
-                <img id=like src='images/iconmonstr-speech-bubble-2-64.png'>
-                <br><font id=like_detail>12</font>
-              </center>
-            </div>
-          </div>
-        </div>
-        <div id=item>
-          <img id=content_image src='sample_images/thumb-fall-autumn-red-season.jpg'>
-          <div id=content_title>
-            <font id=content_title_detail>즐겁게 하루를 만드는 법</font>
-          </div>
-          <div id=content_detail>
-            <div id=fifty>
-              <center>
-                <img id=like src='images/iconmonstr-facebook-like-1-64.png'>
-                <br><font id=like_detail>23</font>
-              </center>
-            </div>
-            <div id=fifty>
-              <center>
-                <img id=like src='images/iconmonstr-speech-bubble-2-64.png'>
-                <br><font id=like_detail>12</font>
-              </center>
-            </div>
-          </div>
-        </div> -->
-
       </center>
     </div>
     <div id=bottom_margin></div>

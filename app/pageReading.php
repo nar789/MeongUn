@@ -243,7 +243,8 @@
         window.parent.postMessage(json,"*");
       }
       function shareTalk(){
-        var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
+        var replaced_content=content.replace(/\n/gi,"<br>");
+        var json='{"title":"share","content":"'+replaced_content+'","back":"'+background+'","no":"'+contentNumber+'"}';
         window.parent.postMessage(json,"*");
       }
       function shareStory(){

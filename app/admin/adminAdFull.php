@@ -32,10 +32,30 @@
       echo '<button onclick="deleteBanner('.$v[0].')">광고 삭제</button></div>';
     }
   ?>
+  <?php
+    include("AdQuery/selectExitAd.php");
+    $exitAd=selectExit()[0];
+    print_r($exitAd);
+    echo '<h1>AD no.'.$exitAd[0].'</h1>';
+    echo '<div id=content><div></div><img src="'.$exitAd[1].'">';
+    echo '<form name="upload-form" action="uploadExit.php" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="MAX_FILE_SIZE" value="25242880"/>
+      <input type="file" name="upload" id="upload"/>
+      <input type="hidden" name="no" value="'.$exitAd[0].'"/>
+      <input type=submit value="이미지업로드" class=btn>
+    </form>';
+    echo '<input id=urlexit type="text" value='.$exitAd[2].'><button onclick="updateURLEXIT('.$exitAd[0].')">URL등록</button>';
+  ?>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   function updateURL(no){
     $.get("./AdQuery/updateAdFullURL.php",{url:document.getElementById('url'+no).value,no:no}).done(function(){
+      location.reload();
+    });
+  }
+  function updateURLEXIT(no){
+    $.get("./AdQuery/updateAdExitURL.php",{url:document.getElementById('urlexit').value,no:no}).done(function(result){
+      alert(result);
       location.reload();
     });
   }
