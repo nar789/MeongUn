@@ -41,6 +41,9 @@
         <param name="android-package" value="com.gae.scaffolder.plugin.FCMPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="MoveTaskToBack">
+        <param name="android-package" value="de.mayflower.cordova.movetasktoback.MoveTaskToBack" />
+    </feature>
     <feature name="SimpleToastPlugin">
         <param name="android-package" value="com.ferdinandsilva.android.SimpleToastPlugin" />
     </feature>

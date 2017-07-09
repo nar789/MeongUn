@@ -59,12 +59,6 @@ function kakaoShare(content,img_src,no){
     applink :{
       url : 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+no,
       text : '앱으로 이동',
-    },
-    params :{
-      paramKey1 : 'paramVal',
-      param1 : 'param1Value',
-      cardId : '27',
-      keyStr : 'hey'
     }
   },
   function (success) {
@@ -159,7 +153,14 @@ var app = {
       //window.simpleToastPlugin.show("hello world", 0, function(e){}, function(e){});
       window.onmessage=function(e){
         if(e.data=="exitApp"){
-          navigator.app.exitApp();
+          //navigator.app.exitApp();
+          mayflower.moveTaskToBack()
+              .then(function() {
+                  console.log('success');
+              })
+              .otherwise(function(e) {
+                  console.log('failed: ' + e);
+          });
         }else if(e.data=="camera"){
 
         }else if(e.data=="LOAD"){
@@ -217,7 +218,7 @@ var app = {
               function() {alert('Failed to open URL via Android Intent');}
             );
           }else if(JSONDATA.title=="share"){
-            //alert(e.content);
+
             if(kakaoLoginStatus==0){
               kakaoShare(JSONDATA.content,JSONDATA.back,JSONDATA.no);
             }else{

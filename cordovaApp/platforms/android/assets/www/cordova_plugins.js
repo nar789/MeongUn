@@ -117,6 +117,19 @@ module.exports = [
         "clobbers": [
             "FCMPlugin"
         ]
+    },
+    {
+        "id": "cordova-android-movetasktoback.tsd",
+        "file": "plugins/cordova-android-movetasktoback/js/typescript_deferred.js",
+        "pluginId": "cordova-android-movetasktoback"
+    },
+    {
+        "id": "cordova-android-movetasktoback.plugin",
+        "file": "plugins/cordova-android-movetasktoback/js/plugin.js",
+        "pluginId": "cordova-android-movetasktoback",
+        "clobbers": [
+            "mayflower"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -136,7 +149,8 @@ module.exports.metadata =
     "cordova-promise-polyfill": "0.0.2",
     "cordova-admob-sdk": "0.7.0",
     "cordova-plugin-admob-free": "0.9.0",
-    "cordova-plugin-fcm": "2.1.2"
+    "cordova-plugin-fcm": "2.1.2",
+    "cordova-android-movetasktoback": "0.1.4"
 };
 // BOTTOM OF METADATA
 });
