@@ -49,7 +49,7 @@ function dbinit(){ //database init.
 //KAKAOTALK
 function kakaoShare(content,img_src,no){
   KakaoTalk.share({
-    text : "세상의 모든 명언\n"+content.replace(/<br>/gi,"\n"),
+    text : "긍정의 하루\n"+content.replace(/<br>/gi,"\n"),
     image : {
       src : 'http://total0808.cafe24.com/meong-un/app/'+img_src,
       width : 138,

@@ -71,6 +71,7 @@
 padding-top: 20px;
 padding-bottom: 10px;
 color: #8b898a;
+min-height:130px;
 
       }
       #shareModal{

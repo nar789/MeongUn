@@ -93,18 +93,21 @@ iframe{
   height:40px;
 }
 #header_content{
+  padding:0px;
+  position: relative;
   height:30px;
 }
 .a_button{
-  color:#fcfcfd;
-  text-decoration:none;
-  padding:12px;
-  font-size:13px;
-  border-color:#f26a41;
-  border-style:none;
-  border-width:0px 0px 3px 0px;
-  padding-left: 17.5px;
-  padding-right:17.5px;
+  color: #fcfcfd;
+  text-decoration: none;
+  font-size: 13px;
+  border-color: #f26a41;
+  border-width: 0px 0px 3px 0px;
+  width: 25%;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  margin:0px;
 }
 
 #header_icon_right{

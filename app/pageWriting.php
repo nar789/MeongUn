@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="css/pageWriting.css">
 
     <script>
+    //////////////content_text
+     $(document).ready(function(){
+            
+      });
+      ///////////////////
       var target_board=3;
       var img="<?php echo $rand_image?>";
       function sendMsg(str){
@@ -26,6 +31,10 @@
         $("#modal2").fadeIn();
       }
       function saveData(){
+
+        k=parseInt(h)/2-fontsize;
+        $('#content_text').css('padding-top',k+"px");
+
         var content=encodeURI(document.getElementById('content_text').value);
         document.getElementById('content_text').value='';
         let json_data='{"title":"writing","content":"'+content+'","image":"'+img+'","category":"'+target_board+'"}';
@@ -42,15 +51,50 @@
       }
       var memh=0;
       var once=true;
+      var k;
+      let fontsize=14;
+      var h;
       function body_resize(){
         if(once==true){
           memh=$(window).height();
           once=false;
+          h=$('#content_text').height();
+          k=parseInt(h)/2-fontsize;
+          $('#content_text').css('padding-top',k+"px");
+        }else{
+            
         }
         $("#mainImage").css('height',memh+'px');
       }
 
+      function InputEnter(e) {
+          if (e.keyCode == 13) {
+              if(k-fontsize>0){
+                k=k-fontsize;
+                $('#content_text').css('padding-top',k+"px");
+              }
+              return false;
+          }
+      }
+
+      function PaddingController(){
+        k=parseInt(h)/2-fontsize;
+        var text=$('#content_text').val();
+        var textarr=text.split('\n');
+        k = k - ((parseInt(textarr.length))*fontsize);
+        if(k<12){
+          k=12;
+        }else{
+          $('#content_text').css('height',h+"px");
+        }
+        $('#content_text').css('padding-top',k+"px");
+      }
+
       window.onmessage=function(e){
+
+        PaddingController();
+
+
         if(e.data=="BACK_WRITING"){
           $("#modal").fadeOut();
         }else if(e.data.indexOf("&xd_action")!=-1){
@@ -174,7 +218,7 @@
       <br>
       <center>
         <div id=content>
-          <textarea id=content_text placeholder="나만의 명언을 남겨주세요."></textarea>
+          <textarea onkeypress="InputEnter(event)" id=content_text placeholder="나만의 명언을 남겨주세요."></textarea>
         </div>
       </center>
       <div id=modal2 style="display:none" onclick="document.getElementById('modal2').style.display='none';">

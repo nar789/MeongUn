@@ -43,6 +43,10 @@
         border-radius: 10px;
         padding: 5px;
       }
+      #bottom_margin{
+        width:100%;
+        height:80px;
+      }
     </style>
   </head>
   <body>
@@ -53,6 +57,7 @@
     </center>
     <center id=content>
     </center>
+    <div id=bottom_margin></div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
       window.onload=function(){

@@ -163,6 +163,8 @@
       function updateContents(){
         var json='{"title":"updateContent","no":"'+contentNumber+'","content":"'+encodeURI(document.getElementById('content_text').value)+'"}';
         window.parent.postMessage(json,"*");
+        document.getElementById('content_text').value='';
+
         window.history.back();
       }
       function deleteComment(no){
@@ -180,16 +182,53 @@
       }
       var memh=0;
       var once=true;
+
       window.onload=()=>{
         window.parent.postMessage("LOAD","*");
       }
+
+      var k;
+      let fontsize=14;
+
       function body_resize(){
         if(once==true){
           memh=$(window).height();
+          h=parseInt($('#content_text').height());
+          PaddingController(); 
           once=false;
         }
         $("#mainImage").css('height',memh+'px');
       }
+
+      var text="";
+      var h=0;
+      function PaddingController(){
+        if(text!=$('#content_text').val() && h!=0){
+          k=h/2;
+          text=$('#content_text').val();
+          var textarr=text.split('\n');
+          k = k - ((parseInt(textarr.length))*fontsize);
+          if(k<12){
+            //var addh=h-(k-12);
+            //$('#content_text').css('height',addh+"px");
+            k=12;
+          }else{
+            $('#content_text').css('height',h+"px");
+          }
+          $('#content_text').css('padding-top',k+"px");
+        }
+      }
+
+       function InputEnter(e) {
+          if (e.keyCode == 13) {
+              if(k-fontsize>0){
+                k=k-fontsize;
+                $('#content_text').css('padding-top',k+"px");
+              }
+              return false;
+          }
+      }
+
       window.onmessage=function(e){
         if("UPDATECOMMENT"==e.data){
           updateComments(contentNumber,admin);
@@ -202,13 +241,14 @@
         }else if(e.data.indexOf("&xd_action")!=-1){
 
         }else{
+          
           var oj=JSON.parse(e.data);
           //alert(e.data);
           contentNumber=oj.no;
           if(oj.author=="false"){
             document.getElementById('delete').style.display="none";
             document.getElementById('upload').style.display="none";
-            document.getElementById('content_text').style="pointer-events:none;";
+            document.getElementById('content_text').style.pointerEvents="none";
           }else if(oj.author=="true"){
             document.getElementById('delete').style.display="block";
             document.getElementById('upload').style.display="block";
@@ -227,14 +267,19 @@
             document.getElementById('post_date').innerHTML=j.time;
             // alert(decodeURI(j.content));
             document.getElementById('content_text').value=decodeURI(j.content);
+
+
             content=decodeURI(j.content);
             //document.body.style="background:url("+j.background+") no-repeat center center fixed;background-size: cover;";
             document.getElementById('mainImage').src=j.background;
             background=j.background;
             document.getElementById("shareImage").src=background;
+            
+            PaddingController();
           });
           updateComments(contentNumber,oj.admin);
           window.parent.postMessage("EXITLOADING","*");
+
         }
 
       }
@@ -298,7 +343,10 @@
     </div>
     <center>
       <div id=content>
-        <textarea id=content_text></textarea>
+        <div id=content_container>
+          <!-- <div style="width:100%;height:35%"></div> -->
+          <textarea onkeypress="InputEnter(event)" id=content_text></textarea>
+        </div>
         <div id=comment_list>
         </div>
 

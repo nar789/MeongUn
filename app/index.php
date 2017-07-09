@@ -103,10 +103,7 @@
       <img id=icon src="images/iconmonstr-bell-2-64.png" onclick="sendMsg('bell')">
     </div>
     <div id=header_content>
-      <a id=button1 class="a_button" href="#page1" data-transition="fade" onclick="active_button(1);current_menu=1;">명언</a>
-      <a id=button2 class="a_button" href="#page2" data-transition="fade" onclick="active_button(2);current_menu=2;">좋은글</a>
-      <a id=button3 class="a_button" href="#page3" data-transition="fade" onclick="active_button(3);current_menu=3;">나만의명언</a>
-      <a id=button4 class="a_button" href="#page4" data-transition="fade" onclick="active_button(4);current_menu=4;">인기추천</a>
+      <a id=button1 class="a_button" href="#page1" data-transition="fade" onclick="active_button(1);current_menu=1;">명언</a><a id=button2 class="a_button" href="#page2" data-transition="fade" onclick="active_button(2);current_menu=2;">좋은글</a><a id=button3 class="a_button" href="#page3" data-transition="fade" onclick="active_button(3);current_menu=3;">나만의명언</a><a id=button4 class="a_button" href="#page4" data-transition="fade" onclick="active_button(4);current_menu=4;">인기추천</a>
     </div>
   </div>
 
