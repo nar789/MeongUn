@@ -229,7 +229,7 @@ min-height:130px;
         window.parent.postMessage(json,"*");
       }
       function shareTalk(){
-        var json='{"title":"share","content":"'+content+'","back":"'+background+'","no":"'+contentNumber+'"}';
+        var json='{"title":"share","content":"'+encodeURI(content)+'","back":"'+background+'","no":"'+contentNumber+'"}';
         window.parent.postMessage(json,"*");
       }
       function shareStory(){

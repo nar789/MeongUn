@@ -82,6 +82,7 @@ function reloadAllData(){
 }
 function exit_app(){
   var json='exitApp';
+  document.getElementById('modal4').style.display="none";
   window.parent.postMessage(json,"*");
 }
 function move_url(ad){
@@ -238,7 +239,6 @@ window.onmessage=function(e){
     }else if(j.title=="share"){
       var json='{"title":"share","content":"'+j.content+'","back":"'+j.back+'","no":"'+j.no+'"}';
       window.parent.postMessage(json,"*");
-      //alert(j.content+j.back+j.no);
     }
   }
 }

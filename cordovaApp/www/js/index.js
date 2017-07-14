@@ -220,7 +220,8 @@ var app = {
           }else if(JSONDATA.title=="share"){
 
             if(kakaoLoginStatus==0){
-              kakaoShare(JSONDATA.content,JSONDATA.back,JSONDATA.no);
+
+              kakaoShare(decodeURI(JSONDATA.content),JSONDATA.back,JSONDATA.no);
             }else{
               //kakaoShare();
               //alert(JSONDATA.content+JSONDATA.back+JSONDATA.no);

@@ -194,7 +194,7 @@
         if(once==true){
           memh=$(window).height();
           h=parseInt($('#content_text').height());
-          PaddingController(); 
+          PaddingController();
           once=false;
         }
         $("#mainImage").css('height',memh+'px');
@@ -241,7 +241,7 @@
         }else if(e.data.indexOf("&xd_action")!=-1){
 
         }else{
-          
+
           var oj=JSON.parse(e.data);
           //alert(e.data);
           contentNumber=oj.no;
@@ -274,7 +274,7 @@
             document.getElementById('mainImage').src=j.background;
             background=j.background;
             document.getElementById("shareImage").src=background;
-            
+
             PaddingController();
           });
           updateComments(contentNumber,oj.admin);
@@ -289,7 +289,7 @@
       }
       function shareTalk(){
         var replaced_content=content.replace(/\n/gi,"<br>");
-        var json='{"title":"share","content":"'+replaced_content+'","back":"'+background+'","no":"'+contentNumber+'"}';
+        var json='{"title":"share","content":"'+encodeURI(replaced_content)+'","back":"'+background+'","no":"'+contentNumber+'"}';
         window.parent.postMessage(json,"*");
       }
       function shareStory(){
