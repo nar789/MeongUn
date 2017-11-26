@@ -1,8 +1,8 @@
 <?php
   $host="localhost";
-  $username="total0808";
+  $username="ace0909";
   $password="top41567720";
-  $dbname="total0808";
+  $dbname="ace0909";
 
   $con=mysqli_connect($host,$username,$password,$dbname);
   if(mysqli_connect_errno()){

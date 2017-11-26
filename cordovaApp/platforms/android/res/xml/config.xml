@@ -68,4 +68,5 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="BackgroundColor" value="0xff000000" />
 </widget>

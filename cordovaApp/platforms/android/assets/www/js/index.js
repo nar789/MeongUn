@@ -1,3 +1,10 @@
+var myid;
+var home="http://ace0909.cafe24.com/app/";
+var phoneNumber;
+var kakaoLoginStatus=0;
+var tokenValue;
+var load_count=0;
+
 function send_message(str){
   var data=new Object();
   data.title=str;
@@ -7,7 +14,7 @@ function send_message(str){
 //////////////////////////////////////////////////////
 ///////////////////DB MODULE//////////////////////////
 //////////////////////////////////////////////////////
-var myid;
+
 function checkLoginStatus(success){
     db.transaction(function (txn) {
         txn.executeSql('select * from login', [], function (tx, res) {
@@ -24,7 +31,6 @@ function setLoginStatus(id){
         });
     });
 }
-
 function dropTable(){
     db.transaction(function (txn) {
         txn.executeSql('drop table login', [], function (tx, res) {
@@ -43,21 +49,19 @@ function dbinit(){ //database init.
 //////////////////////////////////////////////////////
 ///////////////////DB MODULE//////////////////////////
 //////////////////////////////////////////////////////
-////admob//
 
-//////////
 //KAKAOTALK
 function kakaoShare(content,img_src,no){
   KakaoTalk.share({
     text : "긍정의 하루\n"+content.replace(/<br>/gi,"\n"),
     image : {
-      src : 'http://total0808.cafe24.com/meong-un/app/'+img_src,
+      src : home+img_src,
       width : 138,
       height : 90,
     },
 
     applink :{
-      url : 'http://total0808.cafe24.com/meong-un/app/readPreview.php?no='+no,
+      url : home+'readPreview.php?no='+no,
       text : '앱으로 이동',
     }
   },
@@ -68,73 +72,43 @@ function kakaoShare(content,img_src,no){
     console.log('kakao share error');
   });
 }
-// Android only: check permission
-var phoneNumber;
 function hasReadPermission() {
   window.plugins.sim.hasReadPermission((s)=>{alert(s);if(s.equals('false')){
     alert('false');
     requestReadPermission();}},(r)=>{alert(r)});
 }
-
-// Android only: request permission
 function requestReadPermission() {
   window.plugins.sim.requestReadPermission((s)=>{
     window.plugins.sim.getSimInfo((result)=>{
-      //
-      //alert(result.phoneNumber);
       checkLoginStatus((e)=>{
         if(e){
           phoneNumber=result.phoneNumber;
-          //window.plugins.alertdialog.show('testTitle', 'OLD', 'buttonOk');
-          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
+          $("#iframe").attr("src",home+"index.php?login=old&id="+result.phoneNumber);
         }else{
-          //window.plugins.alertdialog.show('testTitle', 'NEW', 'buttonOk');
           setLoginStatus(result.phoneNumber);
-          document.getElementById('iframe').src="http://total0808.cafe24.com/meong-un/app/index.php?login=old&id="+result.phoneNumber;
+          $("#iframe").attr("src",home+"index.php?login=old&id="+result.phoneNumber);
         }
-
-
       });
     },()=>{})
   },(r)=>{navigator.app.exitApp();});
 }
 //KAKAOTALK
-function admobShow(){
-  admob.interstitial.config({
-   id: 'ca-app-pub-1542264535834690/5985608766',
-  })
 
-  admob.interstitial.prepare()
-
-  admob.interstitial.show()
-}
-function onBackKeyDown() {
-  document.getElementById('iframe').contentWindow.postMessage("back",'*');
-}
-var kakaoLoginStatus=0;
-var tokenValue;
-var load_count=0;
 var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
         document.addEventListener("backbutton", onBackKeyDown, false);
     },
+    onBackKeyDown:function(){
+      document.getElementById('iframe').contentWindow.postMessage("back",'*');
+    },
     onDeviceReady: function() {
-      document.addEventListener('deviceready', function(){
-          // Change the color
-          window.plugins.headerColor.tint("#161616");
-      }, false);
 
+      window.plugins.headerColor.tint("#161616");
       FCMPlugin.onNotification(
-      function(data){
-        if(data.wasTapped){
-          //Notification was received on device tray and tapped by the user.
-          //alert( JSON.stringify(data) );
-        }else{
-          //Notification was received in foreground. Maybe the user needs to be notified.
-          //alert( JSON.stringify(data) );
-        }
+        function(data){
+          if(data.wasTapped){}else{}
         },
         function(msg){
           console.log('onNotification callback successfully registered: ' + msg);
@@ -144,16 +118,12 @@ var app = {
         }
       );
       dbinit();
-
       requestReadPermission();
 
-      //Native Alert
-      //window.plugins.alertdialog.show('testTitle', 'Success Message!', 'buttonOk');
-      //Toast
-      //window.simpleToastPlugin.show("hello world", 0, function(e){}, function(e){});
+
+      
       window.onmessage=function(e){
         if(e.data=="exitApp"){
-          //navigator.app.exitApp();
           mayflower.moveTaskToBack()
               .then(function() {
                   console.log('success');
@@ -161,36 +131,23 @@ var app = {
               .otherwise(function(e) {
                   console.log('failed: ' + e);
           });
-        }else if(e.data=="camera"){
-
         }else if(e.data=="LOAD"){
           load_count=load_count+1;
           if(load_count>=8){
-            admobShow();
-            setTimeout(()=>{
-              $('#splash').transition({ x: $(window).width() })
-              .transition({opacity:0})
-              .transition({scale:0});
-            },1000);
-
+            $("#loading").css("display","none");
+            $("#splash").animate({left:'100%',top:'0px'},"fast");
+            setTimeout(function(){$("#splash").css("display","none");},1000);
           }
-        }else if(e.data=="home"){
-
-        }else if(e.data=="signBack"){
-
         }else if(e.data=="TOKEN"){
           FCMPlugin.getToken(
             function(token){
               if(token!=""){
-                $.post("http://total0808.cafe24.com/meong-un/app/admin/tokenManagement.php",{
+                $.post(home+"admin/tokenManagement.php",{
                   token:token,
                   phone:phoneNumber
-                }).done(function(result){
-                  //alert(result);
-                });
+                }).done(function(result){ });
               }else{
-                FCMPlugin.getToken(function(asd){
-                });
+                FCMPlugin.getToken(function(asd){ });
               }
             },
             function(err){
@@ -198,15 +155,9 @@ var app = {
             }
           );
         }else{
+          
           var JSONDATA=JSON.parse(e.data);
-          //window.plugins.alertdialog.show('testTitle', JSONDATA, 'buttonOk');
-          if(JSONDATA.title=="url"){
-
-          }else if(JSONDATA.title=="now_url"){
-
-          }else if(JSONDATA.title=="data"){
-            //window.simpleToastPlugin.show(JSONDATA.data, 0, function(e){}, function(e){});
-          }else if(JSONDATA.title=="signUp"){
+          if(JSONDATA.title=="signUp"){
             setLoginStatus(JSONDATA.signUp);
           }else if(JSONDATA.title=="toast"){
             window.simpleToastPlugin.show(JSONDATA.toast, 0, function(e){}, function(e){});
@@ -218,19 +169,17 @@ var app = {
               function() {alert('Failed to open URL via Android Intent');}
             );
           }else if(JSONDATA.title=="share"){
-
             if(kakaoLoginStatus==0){
-
               kakaoShare(decodeURI(JSONDATA.content),JSONDATA.back,JSONDATA.no);
-            }else{
-              //kakaoShare();
-              //alert(JSONDATA.content+JSONDATA.back+JSONDATA.no);
-
             }
           }
-        }
-      }
-    }
+
+        }//JSONDATA
+
+      }//onMessage
+
+
+    }//DeviceReady
 };
 
 app.initialize();
